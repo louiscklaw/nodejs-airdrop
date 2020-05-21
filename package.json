@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-airdrop",
+  "version": "1.0.0",
+  "description": "A simple airdrop like application, run the nodejs server and you can transfer files accross any device",
+  "scripts": {
+	  "start": "bash config.sh",
+	  "nobash": "node airdrop.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "airdrop",
+    "file",
+    "transfer",
+    "fileshare",
+    "p2p"
+  ],
+  "author": "github@lozzoc",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
