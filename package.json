@@ -23,6 +23,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "address": "^1.1.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "express-handlebars": "^5.1.0"
