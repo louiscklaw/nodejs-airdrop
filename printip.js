@@ -58,7 +58,7 @@ return {
 }
 function printInstructions(appName, urls, useYarn,folder) {
   console.log();
-  console.log(`You can now view ${chalk.bold(appName)} in the browser\nYou are editing the folder at the location ${chalk.bold(folder)}`);
+  console.log(`You can now view ${chalk.bold(appName)} in the browser\nYou are serving/uploading files at the location ${chalk.bold(`|${folder}|`)}`);
   console.log();
 
   if (urls.lanUrlForTerminal) {
@@ -71,7 +71,9 @@ function printInstructions(appName, urls, useYarn,folder) {
   } else {
     console.log(`  ${urls.localUrlForTerminal}`);
   }
-
+  var url = urls.localUrlForTerminal;
+  var start = (process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open');
+  require('child_process').exec(start + ' ' + url);
   console.log();
 
 }
