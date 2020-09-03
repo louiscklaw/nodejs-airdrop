@@ -8,6 +8,8 @@ Must be able to run nodejs packages.
 
 exchange files between all of your devices, with your nodejs server you can upload and download files. to get files from computer to phone its simple, to get files from a phone to someone elses phone you could use social media but it might be faster to zip them all up, upload them to the nodejs server and download them.
 
+there is also a simple elegant user interface when you navigate to the http url in the output, it should help you easily navigate to the download links you desire without needing to type them out yourself.
+
 there is 1 reserved word and its called upload
 
 # How to run
