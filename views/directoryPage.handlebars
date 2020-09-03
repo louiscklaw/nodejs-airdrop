@@ -1,0 +1,14 @@
+
+<div class="list-card">
+  <div class="welcome-directory">
+    <h3> Which file would you like to download? </h3>
+    <p> Sorry you cannot download folders, thats not how things work, first send it to a compressed ZIP or something</p>
+  </div>
+  <div class="art-directory">
+  </div>
+  <ul class="directory-ul">
+    {{#each files}}
+      <li><a href="{{f}}">{{f}}</a></li>
+    {{/each}}
+  </ul>
+</div>
