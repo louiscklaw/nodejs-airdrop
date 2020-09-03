@@ -69,11 +69,11 @@ function printInstructions(appName, urls, useYarn,folder) {
       `  ${chalk.bold('On Your Network:')}  ${urls.lanUrlForTerminal}`
     );
   } else {
-    console.log(`  ${urls.localUrlForTerminal}`);
+    console.log(`${urls.localUrlForTerminal}`);
   }
-  var url = urls.localUrlForTerminal;
+
   var start = (process.platform == 'darwin'? 'open': process.platform == 'win32'? 'start': 'xdg-open');
-  require('child_process').exec(start + ' ' + url);
+  require('child_process').exec(start + ' ' +urls.localUrlForTerminal);
   console.log();
 
 }

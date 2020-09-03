@@ -14,15 +14,15 @@ const {printNetowrkInstructrion} = require("./printip.js");
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-var PORT = process.env.PORT
-var FOLDER = process.env.folder
+var PORT = process.env.PORT;
+var FOLDER = process.env.folder;
 var app = express();
 
 
 
 if(!PORT || !FOLDER){
 	for(var i=0;i<process.argv.length;i++){
-		if(process.argv[i] == "-p" || process.argv[i]=="--port"){
+		if(process.argv[i] == "-p" || process.argv[i]== "--port"){
 			if(i+1<process.argv.length){
 				PORT = parseInt(process.argv[i+1]);
 			}
@@ -30,7 +30,7 @@ if(!PORT || !FOLDER){
 
 		if(process.argv[i] == "-f" || process.argv[i]=="--folder"){
 			if(i+1<process.argv.length){
-				FOLDER =process.arg[i+1];
+				FOLDER = process.argv[i+1];
 			}
 		}
 	}
@@ -41,7 +41,6 @@ if(!PORT || !FOLDER){
  FOLDER = FOLDER || "../";
 }
 
-console.log(__dirname);
 
 app.engine('handlebars', ViewEngine());
 app.set('view options', { layout: 'main' });

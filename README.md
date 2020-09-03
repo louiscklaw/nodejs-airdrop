@@ -15,12 +15,13 @@ there is 1 reserved word and its called upload
 ```
 git clone https://github.com/lozzoc/nodejs-airdrop.git
 npm install
-npm start
+node airdrop.js -p 1234 -f ../stuff
 ```
 
 you can use enviroment variables or command line arguments. enviroment variables take preference.
 
 ```
+// im still working on this, not sure how to do a global install with a binary.
 npm install -g airdropjs
 export port=1234 folder=../stuff && airdropjs
 //or you can use command line
