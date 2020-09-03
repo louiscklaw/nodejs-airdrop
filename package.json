@@ -1,6 +1,6 @@
 {
-  "name": "nodejs-airdrop",
-  "version": "0.9.0",
+  "name": "airdropjs",
+  "version": "0.9.5",
   "description": "A simple airdrop like application, run the nodejs server and you can transfer files accross any device",
   "scripts": {
     "start": "node airdrop.js",
@@ -12,9 +12,15 @@
     "file",
     "transfer",
     "fileshare",
-    "p2p"
+    "toy"
   ],
-  "author": "github@lozzoc",
+  "author": {
+    "name": "Conner Maddalozzo",
+    "url": "http://github.com/lozzoc"
+  },
+  "bin": {
+    "nodemon": "./airdrop.js"
+  },
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
