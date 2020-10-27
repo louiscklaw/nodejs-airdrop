@@ -4,6 +4,9 @@ const address = require('address');
 
 
 function foobar (protocol, host, port, pathname = '/') {
+if( port == "80" ){
+port =""
+}
   const formatUrl = hostname =>
   url.format({
     protocol,

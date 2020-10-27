@@ -37,7 +37,7 @@ if(!PORT || !FOLDER){
 }
 
 if(!PORT || !FOLDER){
- PORT = PORT || 3000;
+ PORT = PORT || 80;
  FOLDER = FOLDER || "../";
 }
 
