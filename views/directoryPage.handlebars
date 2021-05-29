@@ -7,25 +7,27 @@
   <div class="art-directory">
   </div>
   <a href="upload" class="upload-link">Upload a file</a>
-  <table>
+
+  <div class="container">
+    <table class="table">
     <thead>
       <tr>
-        <th>File Name</th>
-        <th>Modified</th>
-        <th>Size(MB)</th>
+        <th scope="col" class="h3">File Name</th>
+        <th scope="col" class="h3">Modified</th>
+        <th scope="col" class="h3">Size(MB)</th>
       </tr>
     </thead>
     <tbody>
       {{#each files}}
         <tr>
-          <td><a href="{{fileName}}">{{fileName}}</a></td>
-          <td>{{dateModifed}}</td>
-          <td>{{size}}</td>
+          <td><h2><a href="{{fileName}}">{{fileName}}</a></h2></td>
+          <td><h3>{{dateModifed}}</h3></td>
+          <td><h3>{{size}}</h3></td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-  <br /><br />
+  </div>
 </div>
 <style>
 
@@ -33,73 +35,17 @@
   margin:0 10px 0 25px;
 }
 
-li{
-  list-style-type: none;
-  line-height: 1.5em;
-  font-size: 2em;
-}
 a:link,
 a:visited{
   color: midnightblue;
 }
-
-.list-card{
-  margin: auto;
-  width: 500px;
+body{
+  background-color: rgba(255, 0, 0, 0);
 }
 
 
 
-/* created by Alexander Earlandsson on Codepen here:
-no license listed = General Public License */
-table {
-  margin-top: 100px;
-	width: 800px;
-	border-collapse: collapse;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
 
-th,
-td {
-	padding: 15px;
-	background-color: rgba(255,255,255,0.2);
-	color: #fff;
-}
 
-th {
-	text-align: left;
-}
 
-thead {
-	th {
-		background-color: #55608f;
-	}
-}
-
-tbody {
-	tr {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
-	}
-	td {
-		position: relative;
-		&:hover {
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: -9999px;
-				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
-				z-index: -1;
-			}
-		}
-	}
-}
-/* &^^^^^^^^^^^^^^^^^^^
-created by Alexander Earlandsson on Codepen here:
-no license listed = General Public License */
 </style>
