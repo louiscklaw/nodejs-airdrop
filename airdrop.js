@@ -61,22 +61,87 @@ app.use(express.static(path.join(__dirname,FOLDER)));
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+function returnFilesInDirRelative(relativeDir){
+	return new Promise(function(res,rej){
+		fs.readdir(FOLDER, (err, files) => {
+			if (err) {
+					rej(err)
+			} else {
+				res(files)
+			}
+		})
+	})
+}
 
+function returnFStatsSync(files,relativeDir){
+	let stats = []
+	try {
+			files.forEach(function(fileName){
+				const stat = fs.statSync(relativeDir+fileName)
+				stats.push(stat)
+			})
+		} catch (err) {
+			print(err)
+		}
+	return stats;
+}
+
+function getModifiedTimeString(timestamp){
+	let elapsed = Date.now() - timestamp;
+	let str = "seconds ago"
+	elapsed /= 1000 // seconds
+	if(elapsed / 60 > 1){
+		str = "minutes ago"
+		elapsed /= 60
+	}
+	if(elapsed / 60 > 1){
+		str = "hours ago"
+		elapsed /= 60
+
+		if(elapsed / 24 > 1){
+			str = "days ago"
+			elapsed /= 24
+		}
+	}
+	return `${elapsed.toFixed(0)} ${str}`;
+}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 app.get("/",function(req,res){
 // list all files in the directory
-	fs.readdir(FOLDER, (err, files) => {
-    if (err) {
-        res.status(300).send(err)
-    }
+	returnFilesInDirRelative(FOLDER)
+	.then(function(files){
+		let stats = returnFStatsSync(files,FOLDER)
 		res.status(200).render("directoryPage",{
-			 files: files.map(function(f){
-				 return {f}
-			 })
+			 files: files.map(function(f,index){
+				 return {
+					 fileName: f,
+					 dateModifed: getModifiedTimeString(stats[index].mtimeMs),
+					 size: (stats[index].size / 1024 / 1024).toFixed(3),
+					 _dmsort: stats[index].mtimeMs,
+				 }
+			 }).sort(function(el,la){
+				 if (el._dmsort > la._dmsort) {
+				    return -1;
+				  }
+				 else if (el._dmsort < la._dmsort) {
+				    return 1;
+				  }
+					else {
+						return 0;
+					}
+			 }),
 		 });
-
-
-		});
+	})
+	.catch(function(err){
+		res.status(300).send(err)
+	})
 })
 
 app.get("/upload",function(req,res,next){
