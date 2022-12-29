@@ -71,20 +71,6 @@ app.get('/upload', function (req, res, next) {
 });
 
 app.post('/upload', function (req, res, next) {
-  // if (req.files.supercoolfile.size) {
-  //   req.files.supercoolfile.mv(
-  //     path.join(__dirname, config.FOLDER, req.files.supercoolfile.name),
-  //     function (err) {
-  //       if (err) {
-  //         res.status(300).send(err);
-  //       }
-  //       res.status(200).render('uploadSuccessful');
-  //     },
-  //   );
-  // } else {
-  //   res.status(300).render('uploadNotSuccessful');
-  // }
-
   const fname = req.query.supercoolfile;
 
   if (req.files.supercoolfile.size) {
@@ -95,6 +81,7 @@ app.post('/upload', function (req, res, next) {
         if (err) {
           res.status(300).send(err);
         }
+        // if upload successful
         res.status(200).render('uploadSuccessful');
       },
     );
