@@ -8,41 +8,39 @@ const { hotreload, engine } = require("express-handlebars-hotreload");
 
 const { printNetowrkInstructrion } = require("./printip.js");
 
-const TMP_DIR = __dirname + "/tmp";
-const VIEWS_DIR = __dirname + "/views";
 
 const config = {
-  TMP_DIR,
-  VIWES_DIR: VIEWS_DIR,
+  CWD: process.cwd(),
+  TMP_DIR: process.cwd() + '/tmp',
+  VIEWS_DIR: process.cwd() + '/views',
+  FOLDER: process.cwd() + '/tmp',
   PORT: 3000,
 };
 
 console.log(config);
 
-if (process.env.NODE_ENV !== "production") hotreload();
+if (process.env.NODE_ENV !== 'production') hotreload();
 
-var PORT = process.env.PORT;
-var FOLDER = process.env.folder;
 var app = express();
 
 app.engine(
-  "handlebars",
+  'handlebars',
   engine({
-    hotreload: process.env.NODE_ENV !== "production",
-  })
+    hotreload: process.env.NODE_ENV !== 'production',
+  }),
 );
-app.set("view options", { layout: "main" });
-app.set("view engine", "handlebars");
-app.set("views", VIEWS_DIR);
+app.set('view options', { layout: 'main' });
+app.set('view engine', 'handlebars');
+app.set('views', config.VIEWS_DIR);
 
-app.use(fupload({ useTempFiles: true, tempFileDir: TMP_DIR }));
+app.use(fupload({ useTempFiles: true, tempFileDir: config.TMP_DIR }));
 
-app.get("/", function (req, res) {
+app.get('/', function (req, res) {
   // list all files in the directory
   returnFilesInDirRelative(FOLDER)
     .then(function (files) {
       let stats = returnFStatsSync(files, FOLDER);
-      res.status(200).render("directoryPage", {
+      res.status(200).render('directoryPage', {
         files: files
           .map(function (f, index) {
             return {
@@ -68,21 +66,41 @@ app.get("/", function (req, res) {
     });
 });
 
-app.get("/upload", function (req, res, next) {
-  res.status(200).render("uploadPage");
+app.get('/upload', function (req, res, next) {
+  res.status(200).render('uploadPage');
 });
 
-app.post("/upload", function (req, res, next) {
+app.post('/upload', function (req, res, next) {
+  // if (req.files.supercoolfile.size) {
+  //   req.files.supercoolfile.mv(
+  //     path.join(__dirname, config.FOLDER, req.files.supercoolfile.name),
+  //     function (err) {
+  //       if (err) {
+  //         res.status(300).send(err);
+  //       }
+  //       res.status(200).render('uploadSuccessful');
+  //     },
+  //   );
+  // } else {
+  //   res.status(300).render('uploadNotSuccessful');
+  // }
+
   const fname = req.query.supercoolfile;
+
   if (req.files.supercoolfile.size) {
-    req.files.supercoolfile.mv(path.join(__dirname, FOLDER, req.files.supercoolfile.name), function (err) {
-      if (err) {
-        res.status(300).send(err);
-      }
-      res.status(200).render("uploadSuccessful");
-    });
+    console.log(path.join(config.FOLDER, req.files.supercoolfile.name));
+    req.files.supercoolfile.mv(
+      path.join(config.FOLDER, req.files.supercoolfile.name),
+      err => {
+        if (err) {
+          res.status(300).send(err);
+        }
+        res.status(200).render('uploadSuccessful');
+      },
+    );
   } else {
-    res.status(300).render("uploadNotSuccessful");
+    // if upload not successful
+    res.status(300).render('uploadNotSuccessful');
   }
 });
 
@@ -90,7 +108,7 @@ app.listen(config.PORT, function (err) {
   if (err) {
     console.log(err);
   } else {
-    printNetowrkInstructrion(config.PORT, FOLDER);
+    printNetowrkInstructrion(config.PORT, config.FOLDER);
   }
 });
 
