@@ -10,8 +10,15 @@
 
 </style>
 
+<script>
+    
+  function handleDeleteButtonClick(e) {
+    console.log(e);
+  }
 
-<div class="container">
+</script>
+
+<div class="container" >
   <div class="upload-box">
 
     <div class="container-title" >
@@ -24,11 +31,35 @@
       <div style="margin-top: 3rem;">
         <input type="file" id="file-input" name="supercoolfile" multiple />
         <label for="file-input">
-          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+          <i class="fa-regular fa-folder-open"></i>
+          <i class="fa-solid fa-memo"></i>
+
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+
           &nbsp; Choose Files To Upload
         </label>
         <div id="num-of-files">No Files Choosen</div>
-        <ul id="files-list"></ul>
+        <ul id="files-list">
+          <li>
+            <div class="left">
+              <p class="icon"><i class="fa-regular fa-file fa-2x"></i> </p>
+              <p class="name">helloworld</p>
+            </div>
+
+            <div class="right" >
+              <p class="size">1234KB</p>
+              <p class="delete-container">
+                <button type="button" class="delete-button" id="file-${idx}" onClick="handleDeleteButtonClick(this, 1)">
+                  <i class="fa-solid fa-trash-can fa-2x"></i>
+                </button>
+              </p>
+            </div>
+
+            </li>
+          <li><p>helloworld_helloworld_helloworld_helloworld_helloworld_helloworld_helloworld_helloworld_</p><p>1234KB</p></li>
+
+        </ul>
 
       </div>
 
@@ -40,9 +71,15 @@
         align-items: center;
       ">
         <div class="button-container">
-            <div id="btn-back" class="button-label">back</div>
+            <div id="btn-back" class="button-label">
+              <i class="fa-solid fa-chevron-left"></i>
+              back
+              </div>
           
-            <div id="btn-upload" class="button-label">upload</div>
+            <div id="btn-upload" class="button-label">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              upload
+              </div>
         </div>
       </div>
       

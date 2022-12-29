@@ -2,30 +2,72 @@ let fileInput = document.getElementById('file-input');
 let fileList = document.getElementById('files-list');
 let numOfFiles = document.getElementById('num-of-files');
 
+let fileUpload = [];
+
 fileInput.addEventListener('change', () => {
   fileList.innerHTML = '';
-  numOfFiles.textContent = `${fileInput.files.length} Files Selected`;
 
   for (i of fileInput.files) {
+    fileUpload.push(i);
+  }
+
+  refreshFileList();
+
+  console.log(fileUpload);
+});
+
+function clearFileList() {
+  var child = fileList.lastElementChild;
+  while (child) {
+    fileList.removeChild(child);
+    child = fileList.lastElementChild;
+  }
+}
+
+function refreshFileList() {
+  clearFileList();
+
+  numOfFiles.textContent = `${fileUpload.length} Files Selected`;
+
+  fileUpload.map((i, idx) => {
     let reader = new FileReader();
     let listItem = document.createElement('li');
     let fileName = i.name;
     let fileSize = (i.size / 1024).toFixed(1);
-    listItem.innerHTML = `<p>${fileName}</p><p>${fileSize}KB</p>`;
-
-    if (fileSize >= 1024) {
-      fileSize = (fileSize / 1024).toFixed(1);
-      listItem.innerHTML = `<p>${fileName}</p><p>${fileSize}MB</p>`;
-    }
-
+    let fileSizeHuman =
+      fileSize >= 1024 ? fileSize : (fileSize / 1024).toFixed(1);
+    listItem.innerHTML = `
+        <div class="left">
+          <p class="icon"><i class="fa-regular fa-file fa-2x"></i> </p>
+          <p class="name">${fileName}</p>
+        </div>
+        <div class="right">
+          <p class="size">${fileSizeHuman}KB</p>
+          <p class="delete-container">
+            <div class="delete-button" id="file-${idx}" onClick="handleDeleteButtonClick(this, ${idx})">
+              <i class="fa-solid fa-trash-can fa-2x"></i>
+            </div>
+          </p>
+        </div>
+      `;
     fileList.appendChild(listItem);
-  }
-});
+  });
+}
 
-document.querySelector('#btn-upload').addEventListener('click', () => {
-  document.querySelector('.upload-form-container').submit();
-});
+function handleDeleteButtonClick(ele, idx) {
+  console.log({ idx });
+  fileUpload = fileUpload.filter((f, i) => i != idx);
 
-document.querySelector('#btn-back').addEventListener('click', () => {
-  console.log('helloworld');
+  refreshFileList();
+  console.log(fileUpload);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('#btn-upload').addEventListener('click', () => {
+    document.querySelector('.upload-form-container').submit();
+  });
+
+  document.querySelector('#btn-back').addEventListener('click', () => {
+    console.log('helloworld');
+  });
 });
