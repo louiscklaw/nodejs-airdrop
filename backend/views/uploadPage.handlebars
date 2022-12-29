@@ -7,36 +7,49 @@
     color: rgba(0,0,0,0.5);
   }
 
+
 </style>
 
 
 <div class="container">
+  <div class="upload-box">
 
-  <div class="container-title" >
-    <h2>file upload / 檔案上傳</h2>
+    <div class="container-title" >
+      <h2>file upload / 檔案上傳</h2>
+    </div>
+
+    <form class="upload-form-container" action="upload" method="post" encType="multipart/form-data">
+      <input class="upload-button" type="submit" value="upload" hidden />
+
+      <div style="margin-top: 3rem;">
+        <input type="file" id="file-input" name="supercoolfile" multiple />
+        <label for="file-input">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+          &nbsp; Choose Files To Upload
+        </label>
+        <div id="num-of-files">No Files Choosen</div>
+        <ul id="files-list"></ul>
+
+      </div>
+
+      
+      <div style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      ">
+        <div class="button-container">
+            <div id="btn-back" class="button-label">back</div>
+          
+            <div id="btn-upload" class="button-label">upload</div>
+        </div>
+      </div>
+      
+    </form>
+
+    <div id="debug"></div>
   </div>
-
-  <form class="upload-form-container" action="upload" method="post" encType="multipart/form-data">
-
-    <div style="margin-top: 3rem;">
-      <input type="file" id="file-input" name="supercoolfile" multiple />
-      <label for="file-input">
-        <i class="fa-solid fa-arrow-up-from-bracket"></i>
-        &nbsp; Choose Files To Upload
-      </label>
-      <div id="num-of-files">No Files Choosen</div>
-      <ul id="files-list"></ul>
-
-    </div>
-
-    <div class="action-buttons">
-      <button class="back-button">back</button>
-      <input class="upload-button" type="submit" value="upload" />
-    </div>
-    
-  </form>
-
-  <div id="debug"></div>
 </div>
 
 <!-- Script -->

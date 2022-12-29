@@ -3,4 +3,4 @@
 set -ex
 
 
-yarn start
+npx nodemon --ignore ./tmp  --exec "yarn start"

@@ -1,0 +1,120 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+body {
+  background-color: var(--primary);
+}
+
+
+.container {
+  min-height: calc( 100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-box {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 34.37em;
+  position: relative;
+  margin: 3.12em auto;
+  padding: 3.12em 1.25em;
+  border-radius: 0.43em;
+  box-shadow: 0 1.25em 2.18em rgb(1, 28, 71, 0.3);
+
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  display: block;
+  position: relative;
+  background-color: var(--tertiary);
+  color: #ffffff;
+  font-size: 1.12em;
+  font-weight: 500;
+  text-align: center;
+  width: 18.75em;
+  padding: 1.12em 0;
+  margin: auto;
+  border-radius: 0.31em;
+  cursor: pointer;
+}
+
+.button-container {
+  width: 80%;
+  display: flex; 
+  flex-direction: row; 
+  justify-content:space-between
+}
+
+.button-label {
+  display: block;
+  position: relative;
+  background-color: var(--tertiary);
+  color: #ffffff;
+  font-size: 1.12em;
+  font-weight: 500;
+  text-align: center;
+  min-width: 10em;
+  padding: 1.12em 0;
+  margin: auto;
+  border-radius: 0.31em;
+  cursor: pointer;
+}
+
+#num-of-files {
+  font-weight: 400;
+  text-align: center;
+  margin: 1.25em 0 1.87em 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.container li {
+  font-weight: 500;
+  background-color: var(--secondary);
+  color: var(--tertiary);
+  margin-bottom: 1em;
+  padding: 1.1em 1em;
+  border-radius: 0.3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme: rgb(29, 30, 32);
+    --entry: rgb(46, 46, 51);
+    --primary: rgb(218, 218, 219);
+    --secondary: rgb(155, 156, 157);
+    --tertiary: rgb(65, 66, 68);
+    --content: rgb(196, 196, 197);
+    --hljs-bg: rgb(46, 46, 51);
+    --code-bg: rgb(55, 56, 62);
+    --border: rgb(51, 51, 51);
+  }
+
+  .list {
+    background: var(--theme);
+  }
+
+  .list:not(.dark)::-webkit-scrollbar-track {
+    background: 0 0;
+  }
+
+  .list:not(.dark)::-webkit-scrollbar-thumb {
+    border-color: var(--theme);
+  }
+}

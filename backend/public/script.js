@@ -21,3 +21,11 @@ fileInput.addEventListener('change', () => {
     fileList.appendChild(listItem);
   }
 });
+
+document.querySelector('#btn-upload').addEventListener('click', () => {
+  document.querySelector('.upload-form-container').submit();
+});
+
+document.querySelector('#btn-back').addEventListener('click', () => {
+  console.log('helloworld');
+});
