@@ -19,19 +19,23 @@ const config = {
 
 console.log(config);
 
-if (process.env.NODE_ENV !== 'production') hotreload();
+const isDevelop = process.env.NODE_ENV !== 'production';
+
+if (isDevelop) hotreload();
 
 var app = express();
 
 app.engine(
   'handlebars',
   engine({
-    hotreload: process.env.NODE_ENV !== 'production',
+    hotreload: isDevelop,
   }),
 );
 app.set('view options', { layout: 'main' });
 app.set('view engine', 'handlebars');
 app.set('views', config.VIEWS_DIR);
+
+app.use(express.static('public'));
 
 app.use(fupload({ useTempFiles: true, tempFileDir: config.TMP_DIR }));
 
@@ -73,22 +77,29 @@ app.get('/upload', function (req, res, next) {
 app.post('/upload', function (req, res, next) {
   const fname = req.query.supercoolfile;
 
-  if (req.files.supercoolfile.size) {
-    console.log(path.join(config.FOLDER, req.files.supercoolfile.name));
-    req.files.supercoolfile.mv(
-      path.join(config.FOLDER, req.files.supercoolfile.name),
-      err => {
-        if (err) {
-          res.status(300).send(err);
-        }
-        // if upload successful
-        res.status(200).render('uploadSuccessful');
-      },
-    );
-  } else {
-    // if upload not successful
+  const PROCESS_NOT_SUCCESS = 0;
+  const PROCESS_SUCCESS = 1;
+  var all_result, overall_result;
+
+  all_result = req.files.supercoolfile.map((file, idx) => {
+    file.mv(path.join(config.FOLDER, file.name), err => {
+      if (err) return PROCESS_NOT_SUCCESS;
+
+      return PROCESS_SUCCESS;
+    });
+  });
+
+  // if any case false => failure
+  overall_result = all_result.filter(r => r == false).length <= 0;
+
+  console.log({ overall_result });
+
+  if (!overall_result) {
     res.status(300).render('uploadNotSuccessful');
+  } else {
   }
+
+  res.status(200).render('uploadSuccessful');
 });
 
 app.listen(config.PORT, function (err) {
