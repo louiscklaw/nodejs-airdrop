@@ -4,7 +4,9 @@
   "description": "A simple airdrop like application, run the nodejs server and you can transfer files accross any device",
   "scripts": {
     "start": "node airdrop.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
+    "gitUpdate": "git add . && git commit -m \"update nodejs-airdrop,\" && git push"
   },
   "keywords": [
     "nodejs",

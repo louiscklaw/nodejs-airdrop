@@ -1,0 +1,51 @@
+
+<div class="list-card">
+  <div class="welcome-directory">
+    <h3> Which file would you like to download? </h3>
+    <p> Sorry you cannot download folders, thats not how things work, first send it to a compressed ZIP or something</p>
+  </div>
+  <div class="art-directory">
+  </div>
+  <a href="upload" class="upload-link">Upload a file</a>
+
+  <div class="container">
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="h3">File Name</th>
+        <th scope="col" class="h3">Modified</th>
+        <th scope="col" class="h3">Size(MB)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each files}}
+        <tr>
+          <td><h2><a href="{{fileName}}">{{fileName}}</a></h2></td>
+          <td><h3>{{dateModifed}}</h3></td>
+          <td><h3>{{size}}</h3></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+</div>
+<style>
+
+.upload-link{
+  margin:0 10px 0 25px;
+}
+
+a:link,
+a:visited{
+  color: midnightblue;
+}
+body{
+  background-color: rgba(255, 0, 0, 0);
+}
+
+
+
+
+
+
+</style>
