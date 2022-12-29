@@ -96,9 +96,8 @@ app.post('/upload', function (req, res, next) {
 
   if (!overall_result) {
     res.status(300).render('uploadNotSuccessful');
-  } else {
-  }
-
+  } 
+  
   res.status(200).render('uploadSuccessful');
 });
 
