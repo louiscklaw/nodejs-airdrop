@@ -1,8 +1,10 @@
 const path = require("path");
 const fs = require("fs");
+const glob = require('glob');
 
-const express = require("express");
-const fupload = require("express-fileupload");
+const express = require('express');
+const fupload = require('express-fileupload');
+const zip = require('express-zip');
 
 const shortid = require('shortid');
 
@@ -10,27 +12,28 @@ const { hotreload, engine } = require('express-handlebars-hotreload');
 
 const { printNetowrkInstructrion } = require('./printip.js');
 
+const is_develop = process.env.NODE_ENV !== 'production';
+
+const HOST = is_develop ? 'localhost:3000' : 'share.louislabs.com';
 const config = {
   CWD: process.cwd(),
   TMP_DIR: process.cwd() + '/tmp',
   VIEWS_DIR: process.cwd() + '/views',
   FOLDER: process.cwd() + '/tmp',
   PORT: 3000,
-  baseURL: 'http://upload.louislabs.com',
+  baseURL: `http://${HOST}`,
 };
 
 console.log(config);
 
-const isDevelop = process.env.NODE_ENV !== 'production';
-
-if (isDevelop) hotreload();
+if (is_develop) hotreload();
 
 var app = express();
 
 app.engine(
   'handlebars',
   engine({
-    hotreload: isDevelop,
+    hotreload: is_develop,
   }),
 );
 app.set('view options', { layout: 'main' });
@@ -42,52 +45,57 @@ app.use(express.static('public'));
 app.use(fupload({ useTempFiles: true, tempFileDir: config.TMP_DIR }));
 
 app.get('/', function (req, res) {
+  res.send('helloworld');
   // list all files in the directory
-  returnFilesInDirRelative(config.FOLDER)
-    .then(function (files) {
-      let stats = returnFStatsSync(files, config.FOLDER);
-      res.status(200).render('directoryPage', {
-        files: files
-          .map(function (f, index) {
-            return {
-              fileName: f,
-              dateModifed: getModifiedTimeString(stats[index].mtimeMs),
-              size: (stats[index].size / 1024 / 1024).toFixed(3),
-              _dmsort: stats[index].mtimeMs,
-            };
-          })
-          .sort(function (el, la) {
-            if (el._dmsort > la._dmsort) {
-              return -1;
-            } else if (el._dmsort < la._dmsort) {
-              return 1;
-            } else {
-              return 0;
-            }
-          }),
-      });
-    })
-    .catch(function (err) {
-      res.status(300).send(err);
-    });
 });
 
-app.get('/g/:_uploadid', function (req, res, next) {
+app.get('/g/:_uploadid', async function (req, res, next) {
   console.log(req.params);
   var { _uploadid } = req.params;
-  res.send({ _uploadid });
+
+  var UPLOAD_PATH = config.FOLDER + '/' + _uploadid + '/';
+  // res.zip([
+  //   { path: '/path/to/file1.name', name: '/path/in/zip/file1.name' },
+  //   { path: '/path/to/file2.name', name: 'file2.name' },
+  // ]);
+
+  var file_need_to_compress = await glob(
+    config.FOLDER + '/' + _uploadid + '/**',
+    { sync: true },
+  );
+
+  // helloworld.txt
+  file_need_to_compress = file_need_to_compress.filter(
+    f => f.search(/.+\/.+\..*/) != -1,
+  );
+
+  // returnFilesInDirRelative(config.FOLDER + '/' + _uploadid).then(files => {
+  //   console.log(files);
+  // });
+  var filename_in_zip = file_need_to_compress.map(f => {
+    return {
+      path: f,
+      name: f.replace(UPLOAD_PATH, ''),
+    };
+  });
+
+  console.log(filename_in_zip);
+
+  res.zip(filename_in_zip);
 });
 
 app.get('/upload', function (req, res, next) {
   res.status(200).render('uploadPage');
 });
 
+const getUploadDir = (baseURL, _uploadid) => `${baseURL}/${_uploadid}`;
+
 app.get('/upload_done', function (req, res, next) {
   var _uploadid = 'xxxxxxxx';
   var baseURL = 'http://www.google.com';
   var _uploadid = 'uuuuuuuu';
 
-  var upload_link = `${baseURL}/${_uploadid}`;
+  var upload_link = getUploadDir(baseURL, _uploadid);
   var upload_link_carousell = `${baseURL}/${_uploadid}`.replace('http', 'ttp');
 
   res.status(200).render('uploadSuccessful', {
@@ -150,7 +158,7 @@ app.listen(config.PORT, function (err) {
 
 function returnFilesInDirRelative(relativeDir) {
   return new Promise(function (res, rej) {
-    fs.readdir(FOLDER, (err, files) => {
+    fs.readdir(relativeDir, (err, files) => {
       if (err) {
         rej(err);
       } else {
