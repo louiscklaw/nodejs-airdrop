@@ -12,7 +12,6 @@ services:
     command: ./entry.sh
     environment:
       - HOST=share.iamon99.com
-      - BACK_TO_PAGE=https://louiscklaw.github.io/
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.share.rule=Host(`share.iamon99.com`)"
