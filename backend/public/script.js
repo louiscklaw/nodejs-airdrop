@@ -71,6 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('#btn-back').addEventListener('click', () => {
-    window.open('https://louiscklaw.github.io', '_self');
+    location.href = 'https://louiscklaw.github.io';
   });
 });
