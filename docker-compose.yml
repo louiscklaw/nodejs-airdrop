@@ -17,3 +17,8 @@ services:
       - "traefik.http.routers.sharing.entrypoints=websecure"
       - "traefik.http.routers.sharing.tls.certresolver=myresolver"
       - "traefik.http.services.sharing.loadbalancer.server.port=3000"
+      
+networks:
+  default:
+    external:
+      name: traefik-proxy-network
