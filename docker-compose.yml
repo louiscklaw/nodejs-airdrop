@@ -5,8 +5,8 @@ services:
     volumes: 
       - $PWD/backend:/backend
     working_dir: /backend
-    ports:
-      - 3000:3000
+    # ports:
+      # - 3000:3000
     # command: sleep infinity
     command: ./entry.sh
 
