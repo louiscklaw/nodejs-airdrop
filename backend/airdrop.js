@@ -14,7 +14,7 @@ const { printNetowrkInstructrion } = require('./printip.js');
 
 const is_develop = process.env.NODE_ENV !== 'production';
 
-const HOST = is_develop ? 'localhost:3000' : 'share.louislabs.com';
+const HOST = is_develop ? 'localhost:3000' : process.env.HOST;
 const config = {
   CWD: process.cwd(),
   TMP_DIR: process.cwd() + '/tmp',
