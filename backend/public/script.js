@@ -71,6 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('#btn-back').addEventListener('click', () => {
-    location.href = 'https://louiscklaw.github.io';
+    console.log('helloworld');
+    // location.href = 'https://louiscklaw.github.io';
+    // window.open('https://www.codexworld.com/', '_self');
+    window.open('https://louiscklaw.github.io', '_self');
   });
 });
