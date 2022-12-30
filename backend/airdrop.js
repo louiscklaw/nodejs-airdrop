@@ -21,7 +21,7 @@ const config = {
   VIEWS_DIR: process.cwd() + '/views',
   FOLDER: process.cwd() + '/tmp',
   PORT: 3000,
-  baseURL: `http://${HOST}`,
+  baseURL: `https://${HOST}`,
 };
 
 console.log(config);
@@ -93,7 +93,7 @@ const getUploadDir = (baseURL, _uploadid) => `${baseURL}/${_uploadid}`;
 
 app.get('/upload_done', function (req, res, next) {
   var _uploadid = 'xxxxxxxx';
-  var baseURL = 'http://www.google.com';
+  var baseURL = 'https://www.google.com';
   var _uploadid = 'uuuuuuuu';
 
   var upload_link = getUploadDir(baseURL, _uploadid);
