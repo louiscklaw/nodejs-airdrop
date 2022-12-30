@@ -6,7 +6,9 @@
     "start": "node airdrop.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
-    "gitUpdate": "git add . && git commit -m \"update nodejs-airdrop,\" && git push"
+    "gitUpdate": "git add . && git commit -m \"update nodejs-airdrop,\" && git push",
+    "docker_rebuild": "docker compose kill && docker compose down && docker compose up -d",
+    "into_docker": "docker compose exec -it airdrip bash"
   },
   "keywords": [
     "nodejs",

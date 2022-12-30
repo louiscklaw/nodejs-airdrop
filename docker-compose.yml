@@ -1,0 +1,18 @@
+services:
+  airdrip:
+    build:
+      context: .
+    volumes: 
+      - $PWD/backend:/backend
+    working_dir: /backend
+    ports:
+      - 3000:3000
+    # command: sleep infinity
+    command: ./entry.sh
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.share.rule=Host(`share.louislabs.com`)"
+      - "traefik.http.routers.share.entrypoints=websecure"
+      - "traefik.http.routers.share.tls.certresolver=myresolver"
+      - "traefik.http.services.share.loadbalancer.server.port=3000"

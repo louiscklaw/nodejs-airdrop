@@ -2,6 +2,8 @@
 
 set -ex
 
+export NODE_ENV=production
+
 npm i -d
 
-./node_modules/.bin/nodemon -e "*" --exec "npm run start"
+npm run start

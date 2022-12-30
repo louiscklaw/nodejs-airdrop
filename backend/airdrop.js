@@ -44,10 +44,11 @@ app.use(express.static('public'));
 
 app.use(fupload({ useTempFiles: true, tempFileDir: config.TMP_DIR }));
 
-app.get('/', function (req, res) {
-  res.send('helloworld');
-  // list all files in the directory
-});
+// app.get('/', function (req, res) {
+//   // res.send('helloworld');
+//   // list all files in the directory
+//   res.redirect('/upload');
+// });
 
 app.get('/g/:_uploadid', async function (req, res, next) {
   console.log(req.params);
