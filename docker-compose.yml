@@ -4,6 +4,7 @@ services:
       context: .
     volumes: 
       - $PWD/backend:/backend
+      - $PWD/volumes/tmp:/backend/tmp
     working_dir: /backend
     # ports:
       # - 3000:3000
