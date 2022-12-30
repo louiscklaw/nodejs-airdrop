@@ -1,41 +1,51 @@
-<!-- Font Awesome Icons -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-/>
-<!-- Google Fonts  -->
-<link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-  rel="stylesheet"
-/>
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+  />
+  <!-- Google Fonts  -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="upload.css" />
+  {{!-- clipboard js --}}
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="upload.css" />
 
-<style>
-  .page-footer {
+  <style>
+    .page-footer {
 
-  }
+    }
 
-  .page-footer-container {
-    width: 100vw;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
+    .page-footer-container {
+      width: 100vw;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
 
-<div class="page">
-    
+    .page {
+      min-height: calc( 100vh );
+    }
+  </style>
 
-  {{{body}}}
+  <div class="page">
+      
 
-  <div class="page-footer-container">
-    <div class="page-footer">
-      © 2022 louis portfolio source
+    {{{body}}}
+
+    <div class="page-footer-container">
+      <div class="page-footer">
+        © 2022 louis portfolio
+      </div>
     </div>
-  </div>
 
-</div>
+  </div>
+</html>

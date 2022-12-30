@@ -52,6 +52,7 @@ function refreshFileList() {
           </p>
         </div>
       `;
+
     fileList.appendChild(listItem);
   });
 }

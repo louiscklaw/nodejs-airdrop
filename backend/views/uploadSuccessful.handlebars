@@ -1,3 +1,179 @@
-<h3>Upload Successful! helloworld</h3>
+<style>
+  .copy-text-area {
+    width: 80%;
+    margin-top: 3rem;
+    text-align:center;
+    padding-top: 1rem;
+  }
 
-<a href="/upload">back</a>
+  .message-area {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .message-body {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .message-body, p {
+    padding-top: 1rem;
+  }
+
+  .button {
+    background-color: var(--primary);
+    padding: 1rem;
+    border-radius: 10px;
+    width: 100px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+  }
+
+  .button-img {
+    width: 50px;
+    height: 50px;
+
+    background-image: url('/images/Carousell-logo-square.png');
+    background-size: contain;
+    background-position:center;
+    background-repeat: no-repeat;
+  }
+
+  .button-icon{
+    width: 50px;
+    height: 50px;
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-text {
+    min-height: 3rem;
+    margin-top: 0.5rem;
+
+
+    display; flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+
+
+</style>
+
+
+<div class="container" >
+    <div class="upload-box" 
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;"
+      >
+
+    <div class="content">
+      <div class="container-title">
+        <h2>Upload Successful! / 上傳完成 </h2>
+      </div>
+
+      <textarea id="w3review" class="copy-text-area" name="w3review" style="
+
+        ">{{upload_link}}
+      </textarea> 
+
+      <div class="message-area">
+        <div class="message-body">
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div class="button" id="btn-back" >
+          <div class="button-icon">
+            <i class="fa-solid fa-chevron-left fa-2x"></i>
+          </div>
+          <div class="button-text" >back</div>
+        </div>
+
+        <div class="button" 
+          id="btn-copy-link" 
+          data-clipboard-text="{{upload_link}}"
+        >
+          <div class="button-icon">
+            <i class="fa-regular fa-copy fa-2x"></i>
+          </div>
+          <div class="button-text">copy link</div>
+        </div>
+        
+        <div class="button" 
+          id="btn-carousell-link" 
+          data-clipboard-text="{{upload_link_carousell}}"
+        >
+          <div class="button-img">
+            </div>
+          <div class="button-text">copy to carousell</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  new ClipboardJS('#btn-copy-link');
+  new ClipboardJS('#btn-carousell-link');
+
+  document.querySelector('#btn-back').addEventListener('click', () =>{
+    window.location.replace('/upload')
+  })
+
+  document.querySelector('#btn-copy-link').addEventListener('click', () =>{
+    document.querySelector('.message-body').innerHTML = `
+      <p>link copied</p>
+      <p>連結已復製</p>
+    `
+  })
+
+  document.querySelector('#btn-carousell-link').addEventListener('click', () =>{
+    document.querySelector('.message-body').innerHTML = `
+      <p>link copied, please paste to carousell message box</p>
+      <p>連結已復製，請貼到 carousell message box</p>
+    `
+  })
+
+</script>

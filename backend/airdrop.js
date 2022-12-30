@@ -4,10 +4,11 @@ const fs = require("fs");
 const express = require("express");
 const fupload = require("express-fileupload");
 
-const { hotreload, engine } = require("express-handlebars-hotreload");
+const shortid = require('shortid');
 
-const { printNetowrkInstructrion } = require("./printip.js");
+const { hotreload, engine } = require('express-handlebars-hotreload');
 
+const { printNetowrkInstructrion } = require('./printip.js');
 
 const config = {
   CWD: process.cwd(),
@@ -15,6 +16,7 @@ const config = {
   VIEWS_DIR: process.cwd() + '/views',
   FOLDER: process.cwd() + '/tmp',
   PORT: 3000,
+  baseURL: 'http://upload.louislabs.com',
 };
 
 console.log(config);
@@ -41,9 +43,9 @@ app.use(fupload({ useTempFiles: true, tempFileDir: config.TMP_DIR }));
 
 app.get('/', function (req, res) {
   // list all files in the directory
-  returnFilesInDirRelative(FOLDER)
+  returnFilesInDirRelative(config.FOLDER)
     .then(function (files) {
-      let stats = returnFStatsSync(files, FOLDER);
+      let stats = returnFStatsSync(files, config.FOLDER);
       res.status(200).render('directoryPage', {
         files: files
           .map(function (f, index) {
@@ -70,16 +72,29 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/g/:_uploadid', function (req, res, next) {
+  console.log(req.params);
+  var { _uploadid } = req.params;
+  res.send({ _uploadid });
+});
+
 app.get('/upload', function (req, res, next) {
   res.status(200).render('uploadPage');
 });
 
-
 app.get('/upload_done', function (req, res, next) {
-  res.status(200).render('uploadSuccessful');
+  var _uploadid = 'xxxxxxxx';
+  var baseURL = 'http://www.google.com';
+  var _uploadid = 'uuuuuuuu';
+
+  var upload_link = `${baseURL}/${_uploadid}`;
+  var upload_link_carousell = `${baseURL}/${_uploadid}`.replace('http', 'ttp');
+
+  res.status(200).render('uploadSuccessful', {
+    upload_link,
+    upload_link_carousell,
+  });
 });
-
-
 
 app.post('/upload', function (req, res, next) {
   const fname = req.query.supercoolfile;
@@ -88,8 +103,16 @@ app.post('/upload', function (req, res, next) {
   const PROCESS_SUCCESS = 1;
   var all_result, overall_result;
 
+  const _uploadid = shortid.generate();
+
+  const TIME_NOW = Date.now();
+  const NOW_FOLDER = TIME_NOW + '-' + _uploadid;
+  const STORE_FOLODER = config.FOLDER + '/' + NOW_FOLDER;
+
+  if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
+
   all_result = req.files.supercoolfile.map((file, idx) => {
-    file.mv(path.join(config.FOLDER, file.name), err => {
+    file.mv(path.join(STORE_FOLODER, file.name), err => {
       if (err) return PROCESS_NOT_SUCCESS;
 
       return PROCESS_SUCCESS;
@@ -103,9 +126,18 @@ app.post('/upload', function (req, res, next) {
 
   if (!overall_result) {
     res.status(300).render('uploadNotSuccessful');
-  } 
-  
-  res.status(200).render('uploadSuccessful');
+  }
+
+  var upload_link = `${config.baseURL}/g/${NOW_FOLDER}`;
+  var upload_link_carousell = `${config.baseURL}/g/${NOW_FOLDER}`.replace(
+    'http',
+    'ttp',
+  );
+
+  res.status(200).render('uploadSuccessful', {
+    upload_link,
+    upload_link_carousell,
+  });
 });
 
 app.listen(config.PORT, function (err) {
