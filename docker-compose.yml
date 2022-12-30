@@ -13,7 +13,7 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.share.rule=Host(`share.louislabs.com`)"
-      - "traefik.http.routers.share.entrypoints=websecure"
-      - "traefik.http.routers.share.tls.certresolver=myresolver"
-      - "traefik.http.services.share.loadbalancer.server.port=3000"
+      - "traefik.http.routers.sharing.rule=Host(`sharing.louislabs.com`)"
+      - "traefik.http.routers.sharing.entrypoints=websecure"
+      - "traefik.http.routers.sharing.tls.certresolver=myresolver"
+      - "traefik.http.services.sharing.loadbalancer.server.port=3000"
