@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node airdrop.js",
+    "start": "NODE_ENV=production node airdrop.js",
     "watch": "nodemon node airdrop.js",
-    "dev": "nodemon --ignore ./tmp --ignore ./public --exec 'yarn start'"
+    "dev": "NODE_ENV=develop nodemon --ignore ./tmp --ignore ./public --exec 'yarn start'"
   },
   "keywords": [],
   "author": "",

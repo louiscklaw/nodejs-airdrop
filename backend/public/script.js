@@ -34,15 +34,17 @@ function refreshFileList() {
     let listItem = document.createElement('li');
     let fileName = i.name;
     let fileSize = (i.size / 1024).toFixed(1);
+
     let fileSizeHuman =
-      fileSize >= 1024 ? fileSize : (fileSize / 1024).toFixed(1);
+      fileSize >= 1024 ? (fileSize / 1024).toFixed(1) + 'MB' : fileSize + 'KB';
+
     listItem.innerHTML = `
         <div class="left">
           <p class="icon"><i class="fa-regular fa-file fa-2x"></i> </p>
           <p class="name">${fileName}</p>
         </div>
         <div class="right">
-          <p class="size">${fileSizeHuman}KB</p>
+          <p class="size">${fileSizeHuman}</p>
           <p class="delete-container">
             <div class="delete-button" id="file-${idx}" onClick="handleDeleteButtonClick(this, ${idx})">
               <i class="fa-solid fa-trash-can fa-2x"></i>

@@ -74,6 +74,13 @@ app.get('/upload', function (req, res, next) {
   res.status(200).render('uploadPage');
 });
 
+
+app.get('/upload_done', function (req, res, next) {
+  res.status(200).render('uploadSuccessful');
+});
+
+
+
 app.post('/upload', function (req, res, next) {
   const fname = req.query.supercoolfile;
 
