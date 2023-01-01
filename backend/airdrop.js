@@ -118,35 +118,57 @@ app.post('/upload', function (req, res, next) {
   const NOW_FOLDER = TIME_NOW + '-' + _uploadid;
   const STORE_FOLODER = config.FOLDER + '/' + NOW_FOLDER;
 
-  if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
+  // if no file -> error
+  if (req.files == null) {
+    return PROCESS_NOT_SUCCESS;
+  }
 
-  all_result = req.files.supercoolfile.map((file, idx) => {
+  // if one file -> not array
+  console.log({ test: req.files.supercoolfile.name });
+  if (req.files.supercoolfile?.name != undefined) {
+    if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
+
+    file = req.files.supercoolfile;
     file.mv(path.join(STORE_FOLODER, file.name), err => {
       if (err) return PROCESS_NOT_SUCCESS;
 
       return PROCESS_SUCCESS;
     });
-  });
 
-  // if any case false => failure
-  overall_result = all_result.filter(r => r == false).length <= 0;
+    overall_result = true;
+  }
+
+  // if more than one file -> array
+  console.log({ test: typeof req.files.supercoolfile == typeof [] });
+  if (req.files.supercoolfile?.length > 1) {
+    if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
+
+    all_result = req.files.supercoolfile.map((file, idx) => {
+      file.mv(path.join(STORE_FOLODER, file.name), err => {
+        if (err) return PROCESS_NOT_SUCCESS;
+
+        return PROCESS_SUCCESS;
+      });
+    });
+    overall_result = all_result.filter(r => r == false).length <= 0;
+  }
 
   console.log({ overall_result });
 
-  if (!overall_result) {
+  if (overall_result) {
+    var upload_link = `${config.baseURL}/g/${NOW_FOLDER}`;
+    var upload_link_carousell = `${config.baseURL}/g/${NOW_FOLDER}`.replace(
+      'http',
+      'ttp',
+    );
+
+    res.status(200).render('uploadSuccessful', {
+      upload_link,
+      upload_link_carousell,
+    });
+  } else {
     res.status(300).render('uploadNotSuccessful');
   }
-
-  var upload_link = `${config.baseURL}/g/${NOW_FOLDER}`;
-  var upload_link_carousell = `${config.baseURL}/g/${NOW_FOLDER}`.replace(
-    'http',
-    'ttp',
-  );
-
-  res.status(200).render('uploadSuccessful', {
-    upload_link,
-    upload_link_carousell,
-  });
 });
 
 app.listen(config.PORT, function (err) {
