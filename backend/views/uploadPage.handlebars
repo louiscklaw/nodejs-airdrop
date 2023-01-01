@@ -30,11 +30,11 @@
       <div style="margin-top: 3rem;">
         <input type="file" id="file-input" name="supercoolfile" multiple />
         <label for="file-input">
-          <i class="fa-regular fa-folder-open"></i>
-          <i class="fa-solid fa-memo"></i>
-          <i class="fa-solid fa-magnifying-glass"></i>
+          <div>
+            <i class="fa-regular fa-folder-open"></i>
+          </div>
 
-          &nbsp; Choose Files To Upload
+          <div class="open-file-select-button">Choose Files To Upload</div>
         </label>
         <div id="num-of-files">No Files Choosen</div>
 
@@ -43,12 +43,7 @@
 
       </div>
 
-      <div style="
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      ">
+      <div class="button-container-outer">
         <div class="button-container">
             <div id="btn-back" class="button-label">
               <i class="fa-solid fa-chevron-left"></i>
