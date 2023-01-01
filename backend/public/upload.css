@@ -351,7 +351,16 @@ ul {
 
     display: flex;
     flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
     margin-top: 1rem;
+  }
+
+  #upload-successful .button-text {
+    min-height: unset;
+    margin-top: unset;
   }
 }
 
