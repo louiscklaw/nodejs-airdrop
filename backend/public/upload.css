@@ -1,3 +1,10 @@
+.container {
+  min-height: calc( 100% - 50px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .list {
   background: var(--theme);
@@ -9,25 +16,6 @@
 
 .list:not(.dark)::-webkit-scrollbar-thumb {
   border-color: var(--theme);
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background-color: var(--primary);
-}
-
-.container {
-  min-height: calc( 100vh - 50px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .upload-box {
@@ -147,15 +135,12 @@ ul {
 .file-list, .icon {
 }
 
-
 .file-list, .name {
   margin-left: 2rem;
   padding-right: 2rem;
 
   word-break: break-all;
 }
-
-
 
 .file-list, .size {
   margin-right: 1rem;
@@ -176,4 +161,51 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* assume desktop */
+@media (max-width: 2000px) {
+  .container{
+    min-height: calc(100vh - 50px);
+  }
+}
+
+/* assume mobile */
+@media (max-width: 1024px) {
+  .page {
+    min-height: 90vh;
+  }
+
+  label {
+    width: unset;
+  }
+
+  .button-container {
+    width: 100%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content:space-between;
+  }
+
+  .button-container{
+    margin-top: 2rem;
+  }
+
+  .button-label {
+    width: 80%;
+  }
+
+  #btn-back {
+    order: 2;
+    margin-top: 1rem;
+    
+  }
+
+  #btn-upload {
+    order: 1;
+  }
+}
+
+@media (max-width: 450px) {
+
 }
