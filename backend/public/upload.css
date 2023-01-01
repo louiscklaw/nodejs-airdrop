@@ -6,6 +6,13 @@
   justify-content: center;
 }
 
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* upload-successful */
 .copy-text-area {
   width: 80%;
@@ -271,6 +278,10 @@ ul {
     min-height: 90vh;
   }
 
+  .container{
+    min-height: calc(100% - 50px);
+  }
+
   label {
     width: unset;
   }
@@ -280,9 +291,7 @@ ul {
     display: flex; 
     flex-direction: column; 
     justify-content:space-between;
-  }
 
-  .button-container{
     margin-top: 2rem;
   }
 
@@ -298,6 +307,33 @@ ul {
 
   #btn-upload {
     order: 1;
+  }
+
+  .message-area {
+    display:none;
+  }
+
+  #upload-successful h2{
+    font-size: 1rem;
+  }
+
+  #upload-successful .button-container {
+    margin-top: 2rem;
+    width:100%;
+    background-color: red;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #upload-successful .button {
+    width: 80%;
+
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
   }
 }
 
