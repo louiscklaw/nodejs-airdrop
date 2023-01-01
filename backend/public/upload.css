@@ -314,10 +314,15 @@ ul {
     font-size: 1rem;
   }
 
+  #upload-successful .upload-box{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+
   #upload-successful .button-container {
     margin-top: 2rem;
     width:100%;
-    background-color: red;
 
     display: flex;
     flex-direction: column;
