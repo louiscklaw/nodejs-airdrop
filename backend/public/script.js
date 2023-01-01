@@ -55,6 +55,12 @@ function refreshFileList() {
 
     fileList.appendChild(listItem);
   });
+
+  if (fileUpload.length > 0) {
+    document.querySelector('#btn-upload').classList.remove(['disabled']);
+  } else {
+    document.querySelector('#btn-upload').classList.add(['disabled']);
+  }
 }
 
 function handleDeleteButtonClick(ele, idx) {
@@ -67,7 +73,11 @@ function handleDeleteButtonClick(ele, idx) {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#btn-upload').addEventListener('click', () => {
-    document.querySelector('.upload-form-container').submit();
+    if (fileUpload.length > 0) {
+      document.querySelector('.upload-form-container').submit();
+    } else {
+      console.debug('file list is empty');
+    }
   });
 
   document.querySelector('#btn-back').addEventListener('click', () => {

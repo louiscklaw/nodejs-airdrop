@@ -1,3 +1,7 @@
+.disabled {
+  background-color: var(--secondary) !important;
+}
+
 .container {
   min-height: calc( 100% - 50px);
   display: flex;
