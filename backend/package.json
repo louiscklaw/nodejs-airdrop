@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node airdrop.js",
-    "dev_start": "NODE_ENV=development node airdrop.js",
+    "start": "cross-env NODE_ENV=production node airdrop.js",
+    "dev_start": "cross-env NODE_ENV=development node airdrop.js",
     "watch": "nodemon node airdrop.js",
     "dev": "nodemon --ignore ./tmp --ignore ./public --exec 'yarn dev_start'"
   },
@@ -27,5 +27,8 @@
     "short-uuid": "^4.2.2",
     "shortid": "^2.2.16",
     "ws": "^8.11.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
