@@ -115,13 +115,11 @@ app.post('/upload', function (req, res, next) {
   const _uploadid = shortid.generate();
 
   const TIME_NOW = Date.now();
-  const NOW_FOLDER = TIME_NOW + '-' + _uploadid;
+  const NOW_FOLDER =  ["u" , _uploadid].join("-");
   const STORE_FOLODER = config.FOLDER + '/' + NOW_FOLDER;
 
   // if no file -> error
-  if (req.files == null) {
-    return PROCESS_NOT_SUCCESS;
-  }
+  if (req.files == null) return PROCESS_NOT_SUCCESS;
 
   // if one file -> not array
   console.log({ test: req.files.supercoolfile.name });

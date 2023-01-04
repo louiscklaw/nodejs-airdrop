@@ -1,3 +1,10 @@
+let en={
+  ALERT_PICK_FILE:'please pick a file to upload before click upload button'
+}
+
+let lang ={en}
+
+
 let fileInput = document.getElementById('file-input');
 let fileList = document.getElementById('files-list');
 let numOfFiles = document.getElementById('num-of-files');
@@ -77,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.upload-form-container').submit();
     } else {
       console.debug('file list is empty');
+      alert(lang.en.ALERT_PICK_FILE)
     }
   });
 
