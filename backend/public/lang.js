@@ -18,8 +18,10 @@ let en = () => {
     BTN_UPLOAD_TEXT,
     OK_COPIED: 'OK link copied !',
     UPLOAD_SUCCESSFUL: 'Upload successful !',
-    OK_CAROUSELL_COPIED:
-      'OK, carousell link copied, please head to carousell message window and paste the link. Thanks !',
+    OK_CAROUSELL_COPIED: `
+      OK, carousell link copied, <br />
+      please head to carousell message window and paste the link. 
+      Thanks !`.trim(),
     FILE_UPLOAD: 'File upload',
     BTN_CHOOSE_FILE_TO_UPLOAD,
     NO_FILE_CHOOSEN: 'No file choosen',
@@ -58,8 +60,10 @@ let zh = () => {
     FILE: '檔案',
     FILES: '檔案',
     BTN_UPLOAD_TEXT: '',
-    UPLOAD_FAIL_TRY_AGAIN:
-      "I'm sorry but the upload not success, please back and try again",
+    UPLOAD_FAIL_TRY_AGAIN: `
+      唔好意思， upload 好似出左小小問題。
+      麻煩你再試多次，謝謝 !
+      `.trim(),
   };
 };
 
