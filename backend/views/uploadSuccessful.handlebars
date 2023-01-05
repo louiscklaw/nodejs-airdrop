@@ -6,6 +6,8 @@
         <h2 id="upload_successful"></h2>
       </div>
 
+      <div id="qr-canvas"></div>
+
       <div class="upload-link">
         <div id="your_carousell_link">your link to file:</div>
         <div class="upload-link-text">{{upload_link}}</div>
@@ -92,4 +94,17 @@
     });
   })
 
+  const qrCode = new QRCodeStyling({
+      width: Math.min(300, window.innerWidth * 0.5),
+      height: Math.min(300, window.innerWidth * 0.5),
+      type: "svg",
+      data: "{{upload_link}}",
+      {{!-- image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg", --}}
+
+      dotsOptions: { color: "rgb(65, 66, 68)", type: "rounded" },
+      backgroundOptions: { color: "#fff", },
+      imageOptions: { crossOrigin: "anonymous", margin: 10 }
+  });
+
+  qrCode.append(document.getElementById("qr-canvas"));
 </script>

@@ -13,7 +13,6 @@ fileInput.addEventListener('change', () => {
 
   refreshFileList();
 
-  console.log(fileUpload);
 });
 
 function clearFileList() {
@@ -42,14 +41,14 @@ function refreshFileList() {
 
     listItem.innerHTML = `
         <div class="left">
-          <p class="icon"><i class="fa-regular fa-file fa-2x"></i> </p>
+          <p class="icon"><i class="fa-regular fa-file"></i> </p>
           <p class="name">${fileName}</p>
         </div>
         <div class="right">
           <p class="size">${fileSizeHuman}</p>
           <p class="delete-container">
             <div class="delete-button" id="file-${idx}" onClick="handleDeleteButtonClick(this, ${idx})">
-              <i class="fa-solid fa-trash-can fa-2x"></i>
+              <i class="fa-solid fa-trash-can"></i>
             </div>
           </p>
         </div>
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fileUpload.length > 0) {
       document.querySelector('.upload-form-container').submit();
     } else {
-      console.debug('file list is empty');
       alert(lang.en.ALERT_PICK_FILE);
     }
   });
