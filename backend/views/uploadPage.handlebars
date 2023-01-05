@@ -60,6 +60,44 @@
     </form>
 
     <div id="debug"></div>
+
+    <template id="my-template">
+      <swal-title>
+        喂，點用呀​？
+        <ul style="line-height: 1.5rem; text-align: left;">
+          <li style="font-size: 1rem; display: flex; flex-direction:row;">
+            <div style="min-width: 2rem;">1.</div>
+            <div>按 choose files to upload</div>
+          </li>
+          <li style="font-size: 1rem; display: flex; flex-direction:row;">
+            <div style="min-width: 2rem;">2.</div>
+            <div>"upload" button enable after you select file, press it</div>
+          </li>
+          <li style="font-size: 1rem; display: flex; flex-direction:row;">
+            <div style="min-width: 2rem;">3.</div>
+            <div>click "copy to carousell" button and paste the link copied into message box</div>
+          </li>
+        </ul>
+
+        <div style="display: flex; flex-direction:row; justify-content: baseline;">
+          <div><input type="checkbox" /></div>
+          <div style="font-size: 1rem; line-height: 1rem;">helloworld ?</div>
+        </div>
+      </swal-title>
+      <swal-icon type="question"></swal-icon>
+
+
+      <swal-button type="confirm">
+        我明白了
+      </swal-button>
+      <swal-param name="allowEscapeKey" value="false" />
+      <swal-param
+        name="customClass"
+        value='{ "popup": "my-popup" }' />
+      <swal-function-param
+        name="didOpen"
+        value="popup => console.log(popup)" />
+    </template>
   </div>
 </div>
 

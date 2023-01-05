@@ -3,7 +3,7 @@
 
     <div class="content">
       <div class="container-title">
-        <h2>Upload Successful! / 上傳完成 </h2>
+        <h2 id="upload_successful"></h2>
       </div>
 
       <div class="upload-link">
@@ -51,42 +51,42 @@
 </div>
 
 <script>
-  toastr.options = {
-    // 參數設定[註1]
-    "closeButton": false, // 顯示關閉按鈕
-    "debug": false, // 除錯
-    "newestOnTop": false,  // 最新一筆顯示在最上面
-    "progressBar": true, // 顯示隱藏時間進度條
-    "positionClass": "toast-bottom-left", // 位置的類別
-    "preventDuplicates": false, // 隱藏重覆訊息
-    "onclick": null, // 當點選提示訊息時，則執行此函式
-    "showDuration": "300", // 顯示時間(單位: 毫秒)
-    "hideDuration": "1000", // 隱藏時間(單位: 毫秒)
-    "timeOut": "500000000", // 當超過此設定時間時，則隱藏提示訊息(單位: 毫秒)
-    "extendedTimeOut": "1000", // 當使用者觸碰到提示訊息時，離開後超過此設定時間則隱藏提示訊息(單位: 毫秒)
-    "showEasing": "swing", // 顯示動畫時間曲線
-    "hideEasing": "linear", // 隱藏動畫時間曲線
-    "showMethod": "fadeIn", // 顯示動畫效果
-    "hideMethod": "fadeOut" // 隱藏動畫效果
-  }
-
   new ClipboardJS('#btn-copy-link');
   new ClipboardJS('#btn-carousell-link');
 
-  document.querySelector('#btn-back').addEventListener('click', () =>{
-    window.location.replace('/upload')
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 15000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
   })
 
-  document.querySelector('#btn-copy-link').addEventListener('click', () =>{
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#upload_successful").innerHTML = active_lang.UPLOAD_SUCCESSFUL
 
-    toastr.success(' ', 'OK copied / 復製左喇 !', {timeOut: 3000, positionClass: 'toast-top-center'});
+    document.querySelector('#btn-back').addEventListener('click', () =>{
+      window.location.replace('/upload')
+    })
+
+    document.querySelector('#btn-copy-link').addEventListener('click', () => {
+      Toast.fire({
+        icon: 'success',
+        title: active_lang.OK_COPIED,
+      });
+    });
+
+    document.querySelector('#btn-carousell-link').addEventListener('click', () => {
+      Toast.fire({
+        icon: 'success',
+        title: active_lang.OK_CAROUSELL_COPIED,
+      });
+    });
   })
-
-  document.querySelector('#btn-carousell-link').addEventListener('click', () =>{
-
-    toastr.success(' ', '連結已復製，請貼到 carousell message box，唔該晒', {timeOut: 30 * 1000, positionClass: 'toast-top-center'});
-  })
-
 
 
 
