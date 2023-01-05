@@ -4,6 +4,7 @@
   "description": "A simple airdrop like application, run the nodejs server and you can transfer files accross any device",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon_format": "npx nodemon --ignore \"./tmp\" --exec \"npm run format\"",
     "format": "prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
     "gitUpdate": "git add . && git commit -m \"update nodejs-airdrop,\" && git push",
     "into_docker": "docker compose exec -it airdrop bash"
@@ -25,10 +26,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "address": "^1.1.2",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.2.0",
-    "express-handlebars": "^5.1.0"
+    "prettier": "^2.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
