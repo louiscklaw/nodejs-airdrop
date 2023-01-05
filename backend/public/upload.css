@@ -1,3 +1,12 @@
+.upload-link{
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.upload-link .upload-link-text {
+  margin-top: 1rem;
+}
+
 .disabled {
   background-color: var(--secondary) !important;
 }
@@ -31,10 +40,11 @@
   margin-bottom: 1rem;
   width: 80%;
 
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  display: none;
 }
 
 .message-body {
