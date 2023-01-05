@@ -7,7 +7,7 @@
       </div>
 
       <div class="upload-link">
-        你的專屬連結:
+        <div id="your_carousell_link">你的專屬連結:</div>
         <div class="upload-link-text">{{upload_link}}</div>
       </div>
 
@@ -21,7 +21,7 @@
           <div class="button-icon">
             <i class="fa-solid fa-chevron-left fa-2x"></i>
           </div>
-          <div class="button-text" >back</div>
+          <div class="button-text" id="btn_back_text">back</div>
         </div>
 
         <div class="button" 
@@ -31,7 +31,7 @@
           <div class="button-icon">
             <i class="fa-regular fa-copy fa-2x"></i>
           </div>
-          <div class="button-text">copy link</div>
+          <div class="button-text" id="btn_copy_link_text">copy link</div>
         </div>
         
         <div class="button" 
@@ -40,7 +40,7 @@
         >
           <div class="button-img">
             </div>
-          <div class="button-text">copy to carousell</div>
+          <div class="button-text" id="btn_copy_carousell_link_text">copy to carousell</div>
         </div>
 
       </div>
@@ -68,6 +68,10 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#upload_successful").innerHTML = active_lang.UPLOAD_SUCCESSFUL
+    document.querySelector("#btn_back_text").innerHTML = active_lang.BACK
+    document.querySelector("#btn_copy_link_text").innerHTML = active_lang.COPY_LINK
+    document.querySelector("#btn_copy_carousell_link_text").innerHTML = active_lang.COPY_CAROUSELL_LINK
+    document.querySelector("#your_carousell_link").innerHTML = active_lang.YOUR_UPLOAD_LINK
 
     document.querySelector('#btn-back').addEventListener('click', () =>{
       window.location.replace('/upload')
