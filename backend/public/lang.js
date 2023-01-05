@@ -26,6 +26,8 @@ let en = () => {
     SELECTED: 'selected',
     FILE: 'file',
     FILES: 'files',
+    UPLOAD_FAIL_TRY_AGAIN:
+      "I'm sorry but the upload not success, please back and try again",
   };
 };
 
@@ -56,6 +58,8 @@ let zh = () => {
     FILE: '檔案',
     FILES: '檔案',
     BTN_UPLOAD_TEXT: '',
+    UPLOAD_FAIL_TRY_AGAIN:
+      "I'm sorry but the upload not success, please back and try again",
   };
 };
 

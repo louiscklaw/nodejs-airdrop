@@ -292,6 +292,20 @@ ul {
   padding: 1rem;
 }
 
+.upload-not-successful .button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 3rem;
+}
+
+.upload-not-successful .button {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+
 /* assume desktop */
 @media (max-width: 2000px) {
   .container {
@@ -373,6 +387,16 @@ ul {
   #upload-successful .button-text {
     min-height: unset;
     margin-top: unset;
+  }
+
+  .upload-not-successful {
+    height: 85vh;
+    /* background-color: gold; */
+  }
+
+  #upload_fail_try_again {
+    margin: 0 2rem;
+    text-align: center;
   }
 }
 
