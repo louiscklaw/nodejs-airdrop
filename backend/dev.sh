@@ -2,5 +2,6 @@
 
 set -ex
 
+chown 1000:1000 -R tmp
 
-npx nodemon --ignore ./tmp  --exec "yarn start"
+./node_modules/nodemon/bin/nodemon.js --ext "*" --ignore "./tmp" --exec "npm run start"
