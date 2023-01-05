@@ -14,8 +14,7 @@ let en = {
   UPLOAD_SUCCESSFUL: 'Upload successful !',
   OK_CAROUSELL_COPIED:
     'OK, carousell link copied, please head to carousell message window and paste the link. Thanks !',
-
-  FILE_UPLOAD: 'file upload',
+  FILE_UPLOAD: 'File upload',
   BTN_CHOOSE_FILE_TO_UPLOAD: 'choose file to upload',
   NO_FILE_CHOOSEN: 'No file choosen',
   SELECTED: 'selected',
