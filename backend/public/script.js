@@ -27,7 +27,9 @@ function clearFileList() {
 function refreshFileList() {
   clearFileList();
 
-  numOfFiles.textContent = `${fileUpload.length} Files Selected`;
+  numOfFiles.textContent = `${fileUpload.length} ${
+    fileUpload.length > 1 ? active_lang.FILES : active_lang.FILE
+  } ${active_lang.SELECTED}`;
 
   fileUpload.map((i, idx) => {
     let reader = new FileReader();
@@ -87,6 +89,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.open('https://www.codexworld.com/', '_self');
     window.open('https://louiscklaw.github.io', '_self');
   });
+
+  document.querySelector('#container_title_text').innerHTML =
+    active_lang.FILE_UPLOAD;
+
+  document.querySelector('#btn_upload_text').innerHTML =
+    active_lang.BTN_UPLOAD_TEXT;
+
+  document.querySelector('#btn_back_text').innerHTML =
+    active_lang.BTN_BACK_TEXT;
+
+  document.querySelector('#btn_choose_file_to_upload').innerHTML =
+    active_lang.BTN_CHOOSE_FILE_TO_UPLOAD;
+
+  document.querySelector('#num-of-files').innerHTML =
+    active_lang.NO_FILE_CHOOSEN;
+
+  document.querySelector('#container_title_text').innerHTML =
+    active_lang.FILE_UPLOAD;
+
+  document.querySelector('#container_title_text').innerHTML =
+    active_lang.FILE_UPLOAD;
 
   document.querySelector('#container_title_text').innerHTML =
     active_lang.FILE_UPLOAD;
