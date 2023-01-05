@@ -51,18 +51,22 @@ let zh = () => {
     COPY_LINK: '復製連結',
     OK_COPIED: 'OK 復製左喇！',
     UPLOAD_SUCCESSFUL: '上傳完成 !',
-    OK_CAROUSELL_COPIED:
-      'OK, 連結已復製，請貼到 carousell message box，唔該晒！',
+    OK_CAROUSELL_COPIED: `
+      OK, 連結已復製，
+      請將內容貼到 carousell message box，
+      唔該晒！
+      `.trim(),
     FILE_UPLOAD: '檔案上傳',
     BTN_CHOOSE_FILE_TO_UPLOAD,
     NO_FILE_CHOOSEN: '沒有選擇檔案',
     SELECTED: '己選擇',
     FILE: '檔案',
     FILES: '檔案',
-    BTN_UPLOAD_TEXT: '',
+    BTN_UPLOAD_TEXT,
+    COPY_CAROUSELL_LINK,
     UPLOAD_FAIL_TRY_AGAIN: `
-      唔好意思， upload 好似出左小小問題。
-      麻煩你再試多次，謝謝 !
+      唔好意思， upload　果陣好似出左小小問題。<br />
+      麻煩你再試多次，唔該先!
       `.trim(),
   };
 };
