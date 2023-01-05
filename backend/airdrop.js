@@ -14,6 +14,9 @@ const { printNetowrkInstructrion } = require('./printip.js');
 
 const is_develop = process.env.NODE_ENV !== 'production';
 
+const PROCESS_NOT_SUCCESS = 0;
+const PROCESS_SUCCESS = 1;
+
 const HOST = is_develop ? 'localhost:3000' : process.env.HOST;
 const config = {
   CWD: process.cwd(),
@@ -29,6 +32,8 @@ if (is_develop) hotreload();
 const debugLog = o => (is_develop ? console.log(o) : '');
 
 debugLog({ 'running config': config });
+
+var upload_id_list = {};
 
 var app = express();
 
@@ -88,7 +93,13 @@ app.get('/g/:_uploadid', async function (req, res, next) {
 });
 
 app.get('/upload', function (req, res, next) {
-  res.status(200).render('uploadPage');
+  const _uploadid = shortid.generate();
+
+  upload_id_list[_uploadid] = { valid_until: Date.now() + 300 };
+
+  res.status(200).render('uploadPage', {
+    _uploadid: _uploadid,
+  });
 });
 
 const getUploadDir = (baseURL, _uploadid) => `${baseURL}/${_uploadid}`;
@@ -108,54 +119,67 @@ app.get('/upload_done', function (req, res, next) {
 });
 
 app.post('/upload', function (req, res, next) {
-  const fname = req.query.supercoolfile;
-
-  const PROCESS_NOT_SUCCESS = 0;
-  const PROCESS_SUCCESS = 1;
+  // const fname = req.query.supercoolfile;
   var all_result, overall_result;
 
-  const _uploadid = shortid.generate();
+  console.log(req.body._uploadid);
+  if (!req.body?._uploadid) return PROCESS_NOT_SUCCESS;
 
-  const TIME_NOW = Date.now();
+  let { _uploadid } = req.body;
   const NOW_FOLDER = ['u', _uploadid].join('-');
   const STORE_FOLODER = config.FOLDER + '/' + NOW_FOLDER;
 
-  // if no file -> error
-  if (req.files == null) return PROCESS_NOT_SUCCESS;
+  if (upload_id_list[_uploadid]) {
+    // const _uploadid = shortid.generate();
+    // const TIME_NOW = Date.now();
 
-  // if one file -> not array
-  console.log({ test: req.files.supercoolfile.name });
-  if (req.files.supercoolfile?.name != undefined) {
-    if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
+    // if no file -> error
+    if (req.files == null) return PROCESS_NOT_SUCCESS;
 
-    file = req.files.supercoolfile;
-    file.mv(path.join(STORE_FOLODER, file.name), err => {
-      if (err) return PROCESS_NOT_SUCCESS;
+    // if one file -> not array
+    console.log({ test: req.files.supercoolfile.name });
+    if (req.files.supercoolfile?.name != undefined) {
+      if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
 
-      return PROCESS_SUCCESS;
-    });
-
-    overall_result = true;
-  }
-
-  // if more than one file -> array
-  console.log({ test: typeof req.files.supercoolfile == typeof [] });
-  if (req.files.supercoolfile?.length > 1) {
-    if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
-
-    all_result = req.files.supercoolfile.map((file, idx) => {
+      file = req.files.supercoolfile;
       file.mv(path.join(STORE_FOLODER, file.name), err => {
         if (err) return PROCESS_NOT_SUCCESS;
 
         return PROCESS_SUCCESS;
       });
-    });
-    overall_result = all_result.filter(r => r == false).length <= 0;
+
+      overall_result = true;
+    }
+
+    // if more than one file -> array
+    console.log({ test: typeof req.files.supercoolfile == typeof [] });
+    if (req.files.supercoolfile?.length > 1) {
+      if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
+
+      all_result = req.files.supercoolfile.map((file, idx) => {
+        file.mv(path.join(STORE_FOLODER, file.name), err => {
+          if (err) return PROCESS_NOT_SUCCESS;
+
+          return PROCESS_SUCCESS;
+        });
+      });
+
+      // if no fail then pass
+      overall_result =
+        all_result.filter(r => r == PROCESS_NOT_SUCCESS).length <= 0;
+    }
+
+    debugLog({ overall_result });
+
+    // delete key after success upload
+    delete upload_id_list[_uploadid];
+  } else {
+    // upload id not found
+    overall_result = PROCESS_NOT_SUCCESS;
   }
+  // if (upload_id_list[])
 
-  debugLog({ overall_result });
-
-  if (overall_result) {
+  if (overall_result == PROCESS_SUCCESS) {
     var upload_link = `${config.baseURL}/g/${NOW_FOLDER}`;
     var upload_link_carousell = `${config.baseURL}/g/${NOW_FOLDER}`.replace(
       'http',
@@ -168,6 +192,16 @@ app.post('/upload', function (req, res, next) {
     });
   } else {
     res.status(300).render('uploadNotSuccessful');
+  }
+
+  // house keep upload_id_list
+  for (const [k, v] of Object.entries(upload_id_list)) {
+    if (v?.valid_until > Date.now()) {
+      // upload_id still valid
+    } else {
+      // clear invalid key due to timeout
+      delete upload_id_list[k];
+    }
   }
 });
 

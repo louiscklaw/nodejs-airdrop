@@ -16,13 +16,17 @@
 </script>
 
 <div class="container">
+  {{_uploadid}}
+
   <div class="upload-box">
 
     <div class="container-title" >
       <h2 id="container_title_text"></h2>
     </div>
 
+    
     <form class="upload-form-container" action="upload" method="post" encType="multipart/form-data">
+      <input hidden name="_uploadid" value="{{_uploadid}}" />
       <input class="upload-button" type="submit" value="upload" hidden />
 
       <div style="margin-top: 3rem;">
