@@ -153,7 +153,8 @@ app.post('/upload', function (req, res, next) {
       }
 
       // if more than one file -> array
-      console.log({ test: typeof req.files.supercoolfile == typeof [] });
+      // console.log({ test: typeof req.files.supercoolfile == typeof [] });
+
       if (req.files.supercoolfile?.length > 1) {
         if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
 
@@ -192,7 +193,7 @@ app.post('/upload', function (req, res, next) {
         upload_link_carousell,
       });
     } else {
-      res.status(300).render('uploadNotSuccessful');
+      res.status(300).redirect('/uploadNotSuccessful');
     }
 
     // house keep upload_id_list
@@ -205,8 +206,13 @@ app.post('/upload', function (req, res, next) {
       }
     }
   } catch (error) {
-    res.status(300).render('uploadNotSuccessful');
+    res.status(300).redirect('/uploadNotSuccessful');
   }
+});
+
+app.get('/uploadNotSuccessful', (req, res) => {
+  console.log('hello unsuccessful');
+  res.status(300).render('uploadNotSuccessful');
 });
 
 app.listen(config.PORT, function (err) {
