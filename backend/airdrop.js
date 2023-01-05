@@ -28,6 +28,8 @@ console.log(config);
 
 if (is_develop) hotreload();
 
+const debugLog = o => (is_develop ? console.log(o) : '');
+
 var app = express();
 
 app.engine(
@@ -151,7 +153,7 @@ app.post('/upload', function (req, res, next) {
     overall_result = all_result.filter(r => r == false).length <= 0;
   }
 
-  console.log({ overall_result });
+  debugLog({ overall_result });
 
   if (overall_result) {
     var upload_link = `${config.baseURL}/g/${NOW_FOLDER}`;
