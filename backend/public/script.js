@@ -1,9 +1,12 @@
-let en={
-  ALERT_PICK_FILE:'please pick a file to upload before click upload button'
-}
+let en = {
+  ALERT_PICK_FILE: 'please pick a file to upload before click upload button',
+};
 
-let lang ={en}
+let zh = {
+  ALERT_PICK_FILE: 'please pick a file to upload before click upload button',
+};
 
+let lang = { en, zh };
 
 let fileInput = document.getElementById('file-input');
 let fileList = document.getElementById('files-list');
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.upload-form-container').submit();
     } else {
       console.debug('file list is empty');
-      alert(lang.en.ALERT_PICK_FILE)
+      alert(lang.en.ALERT_PICK_FILE);
     }
   });
 

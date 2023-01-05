@@ -1,5 +1,5 @@
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 const glob = require('glob');
 
 const express = require('express');
@@ -115,7 +115,7 @@ app.post('/upload', function (req, res, next) {
   const _uploadid = shortid.generate();
 
   const TIME_NOW = Date.now();
-  const NOW_FOLDER =  ["u" , _uploadid].join("-");
+  const NOW_FOLDER = ['u', _uploadid].join('-');
   const STORE_FOLODER = config.FOLDER + '/' + NOW_FOLDER;
 
   // if no file -> error
@@ -191,18 +191,18 @@ function returnFilesInDirRelative(relativeDir) {
 
 function getModifiedTimeString(timestamp) {
   let elapsed = Date.now() - timestamp;
-  let str = "seconds ago";
+  let str = 'seconds ago';
   elapsed /= 1000; // seconds
   if (elapsed / 60 > 1) {
-    str = "minutes ago";
+    str = 'minutes ago';
     elapsed /= 60;
   }
   if (elapsed / 60 > 1) {
-    str = "hours ago";
+    str = 'hours ago';
     elapsed /= 60;
 
     if (elapsed / 24 > 1) {
-      str = "days ago";
+      str = 'days ago';
       elapsed /= 24;
     }
   }

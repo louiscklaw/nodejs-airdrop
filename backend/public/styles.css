@@ -2,22 +2,21 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  
 }
 
 body {
   background-color: var(--primary);
-  font-family: "Noto Sans TC";
+  font-family: 'Noto Sans TC';
 }
 
 .page {
-  min-height: calc( 100vh );
+  min-height: calc(100vh);
 }
 
 .page-footer-container {
   width: 100vw;
   height: 50px;
-  
+
   display: flex;
   flex-direction: row;
   justify-content: center;
