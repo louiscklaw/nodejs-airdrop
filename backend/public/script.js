@@ -87,6 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.open('https://www.codexworld.com/', '_self');
     window.open('https://louiscklaw.github.io', '_self');
   });
+
+  document.querySelector('#container_title_text').innerHTML =
+    active_lang.FILE_UPLOAD;
 });
 
 if (!localStorage.getItem('hide-tutorial')) {

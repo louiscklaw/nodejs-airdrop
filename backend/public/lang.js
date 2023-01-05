@@ -13,6 +13,8 @@ let en = {
   UPLOAD_SUCCESSFUL: 'Upload successful !',
   OK_CAROUSELL_COPIED:
     'OK, carousell link copied, please head to carousell message window and paste the link. Thanks !',
+
+  FILE_UPLOAD: 'file upload',
 };
 
 let zh = {
@@ -29,6 +31,7 @@ let zh = {
   OK_COPIED: 'OK 復製左喇！',
   UPLOAD_SUCCESSFUL: '上傳完成 !',
   OK_CAROUSELL_COPIED: 'OK, 連結已復製，請貼到 carousell message box，唔該晒！',
+  FILE_UPLOAD: '檔案上傳',
 };
 
 let lang = { en, zh };
