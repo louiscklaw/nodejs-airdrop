@@ -4,4 +4,6 @@ set -ex
 
 git pull
 
-npm run docker_rebuild
+docker compose kill 
+docker compose down
+docker compose up -d
