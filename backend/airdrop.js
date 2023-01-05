@@ -24,11 +24,11 @@ const config = {
   baseURL: `https://${HOST}`,
 };
 
-console.log(config);
-
 if (is_develop) hotreload();
 
 const debugLog = o => (is_develop ? console.log(o) : '');
+
+debugLog({ 'running config': config });
 
 var app = express();
 
