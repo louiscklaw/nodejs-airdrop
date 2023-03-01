@@ -22,6 +22,12 @@
     {
       "files": ["*.{j,t}sx", "*.{j,t}s"],
       "options": {}
+    },
+    {
+      "files": "*.hbs",
+      "options": {
+        "singleQuote": false
+      }
     }
   ]
 }
