@@ -1,32 +1,27 @@
-<div class="upload-not-successful container" id="upload-successful">
+<div class='upload-not-successful container' id='upload-successful'>
 
-  <div style="width: 300px; height: 300px; padding: 3rem;">
-    <img src="./images/sorry-icon.svg" />
+  <div style='width: 300px; height: 300px; padding: 3rem;'>
+    <img src='./images/sorry-icon.svg' />
   </div>
 
-  <h3 id="upload_fail_try_again"></h3>
+  <h3 id='upload_fail_try_again'></h3>
 
-  <div class="button-container">
-    <div class="button" id="btn-back" >
-      <div class="button-icon">
-        <i class="fa-solid fa-chevron-left fa-2x"></i>
+  <div class='button-container'>
+    <div class='button' id='btn-back'>
+      <div class='button-icon'>
+        <i class='fa-solid fa-chevron-left fa-2x'></i>
       </div>
-      <div class="button-text" id="btn_back_text">back</div>
+      <div class='button-text' id='btn_back_text'>back</div>
     </div>
   </div>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded",()=>{
-
-    document.querySelector("#upload_fail_try_again").innerHTML = active_lang.UPLOAD_FAIL_TRY_AGAIN;
-
-    let ele_back_button_text = document.querySelector('#btn_back_text')
-    let ele_back_button = document.querySelector('#btn-back')
-
-    ele_back_button_texts.innerHTML = active_lang.BTN_BACK_TEXT
-    ele_back_button.addEventListener("click", () =>{
-      location.replace('/upload')
-    })
-  })
+  document.querySelector("#upload_fail_try_again").innerHTML =
+  active_lang.UPLOAD_FAIL_TRY_AGAIN; let ele_back_button_text =
+  document.querySelector('#btn_back_text') let ele_back_button =
+  document.querySelector('#btn-back') ele_back_button_texts.innerHTML =
+  active_lang.BTN_BACK_TEXT ele_back_button.addEventListener("click", () =>{
+  location.replace('/upload') }) })
 </script>
