@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon_format": "npx nodemon --ignore \"./tmp\" --exec \"npm run format\"",
-    "format": "prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
+    "format": "prettier --loglevel warn --write \"**/*.{handlebars,js,css,html,jsx,tsx,ts,json}\"",
     "gitUpdate": "git add . && git commit -m \"update nodejs-airdrop,\" && git push",
     "into_docker": "docker compose exec -it airdrop bash"
   },

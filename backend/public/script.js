@@ -12,7 +12,6 @@ fileInput.addEventListener('change', () => {
   }
 
   refreshFileList();
-
 });
 
 function clearFileList() {

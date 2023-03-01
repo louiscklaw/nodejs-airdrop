@@ -629,11 +629,9 @@ ul {
 }
 
 #file-list .left {
-  
 }
 
-.trash-can-icon
-{
+.trash-can-icon {
   font-size: 2rem;
 }
 
@@ -660,18 +658,18 @@ ul {
     width: 40px;
   }
 
-  #files-list .left .name{
+  #files-list .left .name {
     padding-top: 0;
   }
 
-  #files-list .right .size{
+  #files-list .right .size {
     padding-top: 0;
   }
 
-  #files-list .left .icon{
+  #files-list .left .icon {
     display: none;
   }
-  
+
   .button-container {
     width: 100%;
     display: flex;
@@ -759,7 +757,7 @@ ul {
     width: unset;
   }
 
-  .upload-link{
+  .upload-link {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
@@ -838,7 +836,7 @@ ul {
 }
 
 @media (max-width: 400px) {
-  .container{
+  .container {
     height: 95vh;
   }
 
@@ -846,7 +844,7 @@ ul {
     padding: 2rem 2rem;
   }
 
-  .page-footer-container{
+  .page-footer-container {
     height: 1rem;
   }
 
@@ -854,7 +852,7 @@ ul {
     display: none;
   }
 
-  #upload-successful .button-container{
+  #upload-successful .button-container {
     margin-top: 0;
   }
 
