@@ -12,10 +12,10 @@ services:
     command: ./entry.sh
 
     environment:
-      - HOST=share.iamon99.com
+      - HOST=share.louislabs.com
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.share.rule=Host(`share.iamon99.com`)'
+      - 'traefik.http.routers.share.rule=Host(`share.louislabs.com`)'
       - 'traefik.http.routers.share.entrypoints=websecure'
       - 'traefik.http.routers.share.tls.certresolver=myresolver'
       - 'traefik.http.services.share.loadbalancer.server.port=3000'
