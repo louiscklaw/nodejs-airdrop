@@ -19,6 +19,7 @@ services:
       - 'traefik.http.routers.share.entrypoints=websecure'
       - 'traefik.http.routers.share.tls.certresolver=myresolver'
       - 'traefik.http.services.share.loadbalancer.server.port=3000'
+      
 
   airdrop-louislabs:
     build:
@@ -36,10 +37,14 @@ services:
       - HOST=share.louislabs.com
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.share.rule=Host(`share.louislabs.com`)'
-      - 'traefik.http.routers.share.entrypoints=websecure'
-      - 'traefik.http.routers.share.tls.certresolver=myresolver'
-      - 'traefik.http.services.share.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.share-louislabs-http.rule=Host(`share.louislabs.com`)'
+      - 'traefik.http.routers.share-louislabs-http.entrypoints=web'
+      - 'traefik.http.routers.share-louislabs-http.middlewares=share-louislabs-https'
+      - 'traefik.http.middlewares.share-louislabs-https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.share-louislabs-https.rule=Host(`share.louislabs.com`)'
+      - 'traefik.http.routers.share-louislabs-https.entrypoints=websecure'
+      - 'traefik.http.routers.share-louislabs-https.tls.certresolver=myresolver'
+
 networks:
   default:
     external:
