@@ -10,7 +10,8 @@ services:
       - 3000
     # command: sleep infinity
     command: ./entry.sh
-
+    env_file:
+      - .env
     environment:
       - HOST=share.iamon99.com
     labels:
@@ -35,7 +36,8 @@ services:
     # - 9005:3000
     # command: sleep infinity
     command: ./entry.sh
-
+    env_file:
+      - .env
     environment:
       - HOST=share.louislabs.com
     labels:
