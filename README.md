@@ -30,7 +30,6 @@ export port=1234 folder=../stuff && airdropjs
 airdropjs -p 1234 -f ../stuff
 ```
 
-
 ### how to use
 
 - visit http://url/ to view a list of links of all the files in your download folder
