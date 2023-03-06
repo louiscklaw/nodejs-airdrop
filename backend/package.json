@@ -8,14 +8,17 @@
     "start": "cross-env NODE_ENV=production node airdrop.js",
     "dev_start": "cross-env NODE_ENV=development node airdrop.js",
     "watch": "nodemon node airdrop.js",
-    "dev": "nodemon --ignore ./tmp --ignore ./public --exec 'yarn dev_start'"
+    "dev": "nodemon --ignore ./tmp --ignore ./public --exec 'yarn dev_start'",
+    "test_slack": "node ./sendSlack.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@slack/web-api": "^6.8.1",
     "address": "^1.1.2",
     "chalk": "4",
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "express-fileupload": "^1.2.0",
     "express-handlebars-hotreload": "^0.0.5",
@@ -26,8 +29,6 @@
     "nodemon": "^2.0.20",
     "short-uuid": "^4.2.2",
     "shortid": "^2.2.16",
-    "cross-env": "^7.0.3",
     "ws": "^8.11.0"
-  },
-  "devDependencies": {}
+  }
 }

@@ -3,13 +3,13 @@ services:
     build:
       context: .
     volumes:
-      - $PWD/backend:/backend
-      - $PWD/volumes/tmp:/backend/tmp
+      - ./backend:/backend
+      - ./volumes/tmp:/backend/tmp
     working_dir: /backend
-    # ports:
-      # - 9005:3000
-    # command: sleep infinity
-    command: ./entry.sh
+    ports:
+      - 3000
+    command: sleep infinity
+    # command: ./entry.sh
 
     environment:
       - HOST=share.iamon99.com
@@ -28,11 +28,11 @@ services:
     build:
       context: .
     volumes:
-      - $PWD/backend:/backend
-      - $PWD/volumes/tmp:/backend/tmp
+      - ./backend:/backend
+      - ./volumes/tmp:/backend/tmp
     working_dir: /backend
     # ports:
-      # - 9005:3000
+    # - 9005:3000
     # command: sleep infinity
     command: ./entry.sh
 

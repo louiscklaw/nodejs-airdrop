@@ -11,6 +11,7 @@ const shortid = require('shortid');
 const { hotreload, engine } = require('express-handlebars-hotreload');
 
 const { printNetowrkInstructrion } = require('./printip.js');
+const { publishMessage } = require('./sendSlack');
 
 const is_develop = process.env.NODE_ENV !== 'production';
 
@@ -192,6 +193,7 @@ app.post('/upload', function (req, res, next) {
         upload_link,
         upload_link_carousell,
       });
+      publishMessage('general', `a file uploaded ${upload_link} :tada:`);
     } else {
       res.status(300).redirect('/uploadNotSuccessful');
     }
