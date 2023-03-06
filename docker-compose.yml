@@ -8,8 +8,8 @@ services:
     working_dir: /backend
     ports:
       - 3000
-    command: sleep infinity
-    # command: ./entry.sh
+    # command: sleep infinity
+    command: ./entry.sh
 
     environment:
       - HOST=share.iamon99.com
