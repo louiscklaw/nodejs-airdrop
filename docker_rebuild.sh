@@ -6,6 +6,6 @@ set -ex
 
 docker compose up -d 
 
-docker compose exec -t airdrop ./dev.sh
+# docker compose exec -t airdrop ./dev.sh
 
 # docker compose exec -it airdrop bash
