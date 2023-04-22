@@ -22,7 +22,7 @@ services:
       - 'traefik.http.routers.share-iamon99-https.rule=Host(`share.iamon99.com`)'
       - 'traefik.http.routers.share-iamon99-https.entrypoints=websecure'
       - 'traefik.http.routers.share-iamon99-https.tls.certresolver=myresolver'
-      - 'traefik.http.services.share-iamon99-https.loadbalancer.server.port=3000'
+      - traefik.http.services.share-iamon99-https.loadbalancer.server.port=3000
 
   airdrop-louislabs:
     build:
@@ -47,9 +47,9 @@ services:
       - 'traefik.http.routers.share-louislabs-https.rule=Host(`share.louislabs.com`)'
       - 'traefik.http.routers.share-louislabs-https.entrypoints=websecure'
       - 'traefik.http.routers.share-louislabs-https.tls.certresolver=myresolver'
-      - 'traefik.http.services.share-louislabs-https.loadbalancer.server.port=3000'
+      - traefik.http.services.share-louislabs-https.loadbalancer.server.port=3000
 
 networks:
   default:
-    name: traefik-proxy-network
-    external: true
+    external:
+      name: traefik-proxy-network
