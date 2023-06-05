@@ -274,8 +274,7 @@ ul {
   margin-right: 1rem;
 }
 
-#files-list .delete-container {
-}
+#files-list .delete-container {}
 
 .delete-button {
   border-radius: 10px;
@@ -315,6 +314,7 @@ ul {
     min-height: calc(100vh - 50px);
   }
 }
+
 a.upload-link {
   margin: 3rem 0;
   text-align: center;
@@ -568,8 +568,7 @@ ul {
   align-items: center;
 }
 
-#files-list .icon {
-}
+#files-list .icon {}
 
 #files-list .name {
   margin-left: 2rem;
@@ -582,8 +581,7 @@ ul {
   margin-right: 1rem;
 }
 
-#files-list .delete-container {
-}
+#files-list .delete-container {}
 
 .delete-button {
   border-radius: 10px;
@@ -628,8 +626,7 @@ ul {
   }
 }
 
-#file-list .left {
-}
+#file-list .left {}
 
 .trash-can-icon {
   font-size: 2rem;

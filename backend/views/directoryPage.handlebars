@@ -20,10 +20,16 @@
       </thead>
       <tbody>
         {{#each files}}
-          <tr>
-            <td><h2><a href='{{fileName}}'>{{fileName}}</a></h2></td>
-            <td><h3>{{dateModifed}}</h3></td>
-            <td><h3>{{size}}</h3></td>
+        <tr>
+          <td>
+            <h2><a href='{{fileName}}'>{{fileName}}</a></h2>
+          </td>
+          <td>
+            <h3>{{dateModifed}}</h3>
+          </td>
+          <td>
+            <h3>{{size}}</h3>
+          </td>
           </tr>
         {{/each}}
       </tbody>
@@ -31,8 +37,16 @@
   </div>
 </div>
 <style>
+  .upload-link {
+    margin: 0 10px 0 25px;
+  }
 
-  .upload-link{ margin:0 10px 0 25px; } a:link, a:visited{ color: midnightblue;
-  } body{ background-color: rgba(255, 0, 0, 0); }
+  a:link,
+  a:visited {
+    color: midnightblue;
+  }
 
+  body {
+    background-color: rgba(255, 0, 0, 0);
+  }
 </style>

@@ -1,7 +1,10 @@
 <style>
-  .container-title { display:flex; flex-direction: row; justify-content: center;
-  color: rgba(0,0,0,0.5); }
-
+  .container-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
+  }
 </style>
 
 <script>
@@ -16,12 +19,7 @@
       <h2 id='container_title_text'></h2>
     </div>
 
-    <form
-      class='upload-form-container'
-      action='upload'
-      method='post'
-      encType='multipart/form-data'
-    >
+    <form class='upload-form-container' action='upload' method='post' encType='multipart/form-data'>
       <input hidden name='_uploadid' value='{{_uploadid}}' />
       <input class='upload-button' type='submit' value='upload' hidden />
 
@@ -32,10 +30,7 @@
             <i class='fa-regular fa-folder-open'></i>
           </div>
 
-          <div
-            class='open-file-select-button'
-            id='btn_choose_file_to_upload'
-          >Choose Files To Upload</div>
+          <div class='open-file-select-button' id='btn_choose_file_to_upload'>Choose Files To Upload</div>
         </label>
         <div id='num-of-files'>No Files Choosen</div>
         <ul id='files-list'>

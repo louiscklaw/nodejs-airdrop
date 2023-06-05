@@ -25,9 +25,8 @@ function clearFileList() {
 function refreshFileList() {
   clearFileList();
 
-  numOfFiles.textContent = `${fileUpload.length} ${
-    fileUpload.length > 1 ? active_lang.FILES : active_lang.FILE
-  } ${active_lang.SELECTED}`;
+  numOfFiles.textContent = `${fileUpload.length} ${fileUpload.length > 1 ? active_lang.FILES : active_lang.FILE
+    } ${active_lang.SELECTED}`;
 
   fileUpload.map((i, idx) => {
     let reader = new FileReader();
@@ -74,17 +73,17 @@ function handleDeleteButtonClick(ele, idx) {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#btn-upload').addEventListener('click', () => {
     if (fileUpload.length > 0) {
-      
+
       // NOTE: upload of files larger than 100M were restricted by cloudflare
       document.querySelector('.upload-form-container').submit();
-      
+
     } else {
       alert(lang.en.ALERT_PICK_FILE);
     }
   });
 
   document.querySelector('#btn-back').addEventListener('click', () => {
-    console.log('helloworld');
+    alert('helloworld');
     // location.href = 'https://louiscklaw.github.io';
     // window.open('https://www.codexworld.com/', '_self');
     window.open('https://louiscklaw.github.io', '_self');
