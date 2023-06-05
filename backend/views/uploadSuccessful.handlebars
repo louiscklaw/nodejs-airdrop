@@ -55,7 +55,8 @@
           toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  })
+    });
+    
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#upload_successful").innerHTML =
       active_lang.UPLOAD_SUCCESSFUL
@@ -75,7 +76,9 @@
     document.querySelector('#btn-carousell-link').addEventListener('click', () => {
       Toast.fire({ icon: 'success', title: active_lang.OK_CAROUSELL_COPIED, });
     });
-  }) const qrCode = new QRCodeStyling({
+  });
+
+    const qrCode = new QRCodeStyling({
     width: Math.min(300,
       window.innerWidth * 0.5), height: Math.min(300, window.innerWidth * 0.5),
     type: "svg", data: "{{upload_link}}",
