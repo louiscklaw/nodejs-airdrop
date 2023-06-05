@@ -219,6 +219,16 @@ app.get('/uploadNotSuccessful', (req, res) => {
   res.status(300).render('uploadNotSuccessful');
 });
 
+app.get('/helloworld', (req, res) => {
+  res.status(300).render('uploadNotSuccessful');
+});
+
+app.get('/', (req, res) => {
+  res.redirect('/upload');
+});
+
+
+
 app.listen(config.PORT, function (err) {
   if (err) {
     console.log(err);

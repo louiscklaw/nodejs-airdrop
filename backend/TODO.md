@@ -1,3 +1,3 @@
 # TODO:
 
-1. redirect / to /upload
+1. redirect '/' to '/upload'
