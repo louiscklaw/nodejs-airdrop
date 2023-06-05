@@ -25,9 +25,7 @@
     "nodemon": "./airdrop.js"
   },
   "license": "ISC",
-  "dependencies": {
-    "prettier": "^2.8.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "nodemon": "^2.0.4"
   }
