@@ -23,6 +23,7 @@ let en = () => {
       please head to carousell message window and paste the link. 
       Thanks !`.trim(),
     FILE_UPLOAD: 'File upload',
+    MAX_FILE_SIZE_BELOW_100MB: '(Max file size 100Mb)',
     BTN_CHOOSE_FILE_TO_UPLOAD,
     NO_FILE_CHOOSEN: 'No file choosen',
     SELECTED: 'selected',
@@ -57,6 +58,7 @@ let zh = () => {
       唔該晒！
       `.trim(),
     FILE_UPLOAD: '檔案上傳',
+    MAX_FILE_SIZE_BELOW_100MB: '(最大檔案大小 100Mb)',
     BTN_CHOOSE_FILE_TO_UPLOAD,
     NO_FILE_CHOOSEN: '沒有選擇檔案',
     SELECTED: '己選擇',
