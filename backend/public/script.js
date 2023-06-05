@@ -62,6 +62,17 @@ function refreshFileList() {
   }
 }
 
+var proceedUpload = true;
+function disableUploadButton() {
+  document.querySelector('#btn-upload').classList.add(['disabled']);
+  proceedUpload = false;
+}
+
+function resumeUploadButton() {
+  document.querySelector('#btn-upload').classList.remove(['disabled']);
+  proceedUpload = true;
+}
+
 function handleDeleteButtonClick(ele, idx) {
   console.log({ idx });
   fileUpload = fileUpload.filter((f, i) => i != idx);
@@ -72,15 +83,24 @@ function handleDeleteButtonClick(ele, idx) {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#btn-upload').addEventListener('click', () => {
-    if (fileUpload.length > 0) {
+    if (proceedUpload) {
 
-      // NOTE: upload of files larger than 100M were restricted by cloudflare
-      document.querySelector('.upload-form-container').submit();
+      if (fileUpload.length > 0) {
 
+        // NOTE: upload of files larger than 100M were restricted by cloudflare
+        document.querySelector('.upload-form-container').submit();
+
+      } else {
+        alert(lang.en.ALERT_PICK_FILE);
+      }
     } else {
-      alert(lang.en.ALERT_PICK_FILE);
+      console.log('upload button click during upload process.');
     }
   });
+
+
+
+
 
   document.querySelector('#btn-back').addEventListener('click', () => {
     alert('helloworld');
