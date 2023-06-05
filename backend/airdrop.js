@@ -68,15 +68,10 @@ app.get('/g/:_uploadid', async function (req, res, next) {
   //   { path: '/path/to/file2.name', name: 'file2.name' },
   // ]);
 
-  var file_need_to_compress = await glob(
-    config.FOLDER + '/' + _uploadid + '/**',
-    { sync: true },
-  );
+  var file_need_to_compress = await glob(config.FOLDER + '/' + _uploadid + '/**', { sync: true });
 
   // helloworld.txt
-  file_need_to_compress = file_need_to_compress.filter(
-    f => f.search(/.+\/.+\..*/) != -1,
-  );
+  file_need_to_compress = file_need_to_compress.filter(f => f.search(/.+\/.+\..*/) != -1);
 
   // returnFilesInDirRelative(config.FOLDER + '/' + _uploadid).then(files => {
   //   console.log(files);
@@ -168,8 +163,7 @@ app.post('/upload', function (req, res, next) {
         });
 
         // if no fail then pass
-        overall_result =
-          all_result.filter(r => r == PROCESS_NOT_SUCCESS).length <= 0;
+        overall_result = all_result.filter(r => r == PROCESS_NOT_SUCCESS).length <= 0;
       }
 
       debugLog({ overall_result });
@@ -184,18 +178,14 @@ app.post('/upload', function (req, res, next) {
 
     if (overall_result == PROCESS_SUCCESS) {
       var upload_link = `${config.baseURL}/g/${NOW_FOLDER}`;
-      var upload_link_carousell = `${config.baseURL}/g/${NOW_FOLDER}`.replace(
-        'http',
-        'ttp',
-      );
+      var upload_link_carousell = `${config.baseURL}/g/${NOW_FOLDER}`.replace('http', 'ttp');
 
       res.status(200).render('uploadSuccessful', {
         upload_link,
         upload_link_carousell,
       });
       // publishMessage('general', `a file uploaded ${upload_link} :tada:`);
-      sendHelloworldGroupMessage(`a file uploaded ${upload_link} :tada:`)
-
+      sendHelloworldGroupMessage(`a file uploaded ${upload_link} :tada:`);
     } else {
       res.status(300).redirect('/uploadNotSuccessful');
     }
@@ -226,8 +216,6 @@ app.get('/helloworld', (req, res) => {
 app.get('/', (req, res) => {
   res.redirect('/upload');
 });
-
-
 
 app.listen(config.PORT, function (err) {
   if (err) {
@@ -279,5 +267,6 @@ function returnFStatsSync(files, relativeDir) {
   } catch (err) {
     print(err);
   }
+
   return stats;
 }

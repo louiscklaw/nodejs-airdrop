@@ -20,7 +20,7 @@ let en = () => {
     UPLOAD_SUCCESSFUL: 'Upload successful !',
     OK_CAROUSELL_COPIED: `
       OK, carousell link copied, <br />
-      please head to carousell message window and paste the link. 
+      please head to carousell message window and paste the link.
       Thanks !`.trim(),
     FILE_UPLOAD: 'File upload',
     MAX_FILE_SIZE_BELOW_100MB: '(Max file size 100Mb)',
@@ -29,8 +29,7 @@ let en = () => {
     SELECTED: 'selected',
     FILE: 'file',
     FILES: 'files',
-    UPLOAD_FAIL_TRY_AGAIN:
-      "I'm sorry but the upload not success, please back and try again",
+    UPLOAD_FAIL_TRY_AGAIN: "I'm sorry but the upload not success, please back and try again",
   };
 };
 

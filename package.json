@@ -27,9 +27,13 @@
     "nodemon": "./airdrop.js"
   },
   "license": "ISC",
+<<<<<<< HEAD
   "dependencies": {
     "@slack/web-api": "^6.8.1"
   },
+=======
+  "dependencies": {},
+>>>>>>> 98f1020 (fix prettier on project package.json,)
   "devDependencies": {
     "nodemon": "^2.0.4"
   }

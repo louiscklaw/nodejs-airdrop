@@ -6,7 +6,9 @@
         <h2 id='upload_successful'></h2>
       </div>
 
-      <div id='qr-canvas'></div>
+      <div id='qr-canvas'>
+      
+      </div>
 
       <div class='upload-link'>
         <div id='your_carousell_link'>your link to file:</div>
@@ -56,7 +58,7 @@
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
     });
-    
+
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#upload_successful").innerHTML =
       active_lang.UPLOAD_SUCCESSFUL

@@ -32,11 +32,7 @@ function foobar(protocol, host, port, pathname = '/') {
       if (lanUrlForConfig) {
         // Check if the address is a private ip
         // https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
-        if (
-          /^10[.]|^172[.](1[6-9]|2[0-9]|3[0-1])[.]|^192[.]168[.]/.test(
-            lanUrlForConfig,
-          )
-        ) {
+        if (/^10[.]|^172[.](1[6-9]|2[0-9]|3[0-1])[.]|^192[.]168[.]/.test(lanUrlForConfig)) {
           // Address is private, format it for later use
           lanUrlForTerminal = prettyPrintUrl(lanUrlForConfig);
         } else {
@@ -65,29 +61,18 @@ function printInstructions(appName, urls, useYarn, folder) {
   console.log(
     `You can now view ${chalk.bold(
       appName,
-    )} in the browser\nYou are serving/uploading files at the location ${chalk.bold(
-      `|${folder}|`,
-    )}`,
+    )} in the browser\nYou are serving/uploading files at the location ${chalk.bold(`|${folder}|`)}`,
   );
   console.log();
 
   if (urls.lanUrlForTerminal) {
-    console.log(
-      `  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`,
-    );
-    console.log(
-      `  ${chalk.bold('On Your Network:')}  ${urls.lanUrlForTerminal}`,
-    );
+    console.log(`  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`);
+    console.log(`  ${chalk.bold('On Your Network:')}  ${urls.lanUrlForTerminal}`);
   } else {
     console.log(`${urls.localUrlForTerminal}`);
   }
 
-  var start =
-    process.platform == 'darwin'
-      ? 'open'
-      : process.platform == 'win32'
-      ? 'start'
-      : 'xdg-open';
+  var start = process.platform == 'darwin' ? 'open' : process.platform == 'win32' ? 'start' : 'xdg-open';
   require('child_process').exec(start + ' ' + urls.localUrlForTerminal);
   console.log();
 }

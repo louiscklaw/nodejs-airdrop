@@ -25,8 +25,9 @@ function clearFileList() {
 function refreshFileList() {
   clearFileList();
 
-  numOfFiles.textContent = `${fileUpload.length} ${fileUpload.length > 1 ? active_lang.FILES : active_lang.FILE
-    } ${active_lang.SELECTED}`;
+  numOfFiles.textContent = `${fileUpload.length} ${fileUpload.length > 1 ? active_lang.FILES : active_lang.FILE} ${
+    active_lang.SELECTED
+  }`;
 
   fileUpload.map((i, idx) => {
     let reader = new FileReader();
@@ -34,8 +35,7 @@ function refreshFileList() {
     let fileName = i.name;
     let fileSize = (i.size / 1024).toFixed(1);
 
-    let fileSizeHuman =
-      fileSize >= 1024 ? (fileSize / 1024).toFixed(1) + 'MB' : fileSize + 'KB';
+    let fileSizeHuman = fileSize >= 1024 ? (fileSize / 1024).toFixed(1) + 'MB' : fileSize + 'KB';
 
     listItem.innerHTML = `
         <div class="left">
@@ -84,12 +84,9 @@ function handleDeleteButtonClick(ele, idx) {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#btn-upload').addEventListener('click', () => {
     if (proceedUpload) {
-
       if (fileUpload.length > 0) {
-
         // NOTE: upload of files larger than 100M were restricted by cloudflare
         document.querySelector('.upload-form-container').submit();
-
       } else {
         alert(lang.en.ALERT_PICK_FILE);
       }
@@ -98,40 +95,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-
-
-
   document.querySelector('#btn-back').addEventListener('click', () => {
-    alert('helloworld');
+    console.debug('helloworld');
     // location.href = 'https://louiscklaw.github.io';
     // window.open('https://www.codexworld.com/', '_self');
     window.open('https://louiscklaw.github.io', '_self');
   });
 
-  document.querySelector('#container_title_text').innerHTML =
-    active_lang.FILE_UPLOAD;
+  document.querySelector('#container_title_text').innerHTML = active_lang.FILE_UPLOAD;
 
-  document.querySelector('#btn_upload_text').innerHTML =
-    active_lang.BTN_UPLOAD_TEXT;
+  document.querySelector('#btn_upload_text').innerHTML = active_lang.BTN_UPLOAD_TEXT;
 
-  document.querySelector('#btn_back_text').innerHTML =
-    active_lang.BTN_BACK_TEXT;
+  document.querySelector('#btn_back_text').innerHTML = active_lang.BTN_BACK_TEXT;
 
-  document.querySelector('#btn_choose_file_to_upload').innerHTML =
-    active_lang.BTN_CHOOSE_FILE_TO_UPLOAD;
+  document.querySelector('#btn_choose_file_to_upload').innerHTML = active_lang.BTN_CHOOSE_FILE_TO_UPLOAD;
 
-  document.querySelector('#num-of-files').innerHTML =
-    active_lang.NO_FILE_CHOOSEN;
+  document.querySelector('#num-of-files').innerHTML = active_lang.NO_FILE_CHOOSEN;
 
-  document.querySelector('#container_title_text').innerHTML =
-    active_lang.FILE_UPLOAD;
+  document.querySelector('#container_subtitle').innerHTML = active_lang.MAX_FILE_SIZE_BELOW_100MB;
 
-  document.querySelector('#container_title_text').innerHTML =
-    active_lang.FILE_UPLOAD;
+  document.querySelector('#container_title_text').innerHTML = active_lang.FILE_UPLOAD;
 
-  document.querySelector('#container_title_text').innerHTML =
-    active_lang.FILE_UPLOAD;
+  document.querySelector('#container_title_text').innerHTML = active_lang.FILE_UPLOAD;
 });
 
 if (!localStorage.getItem('hide-tutorial')) {
