@@ -74,7 +74,10 @@ function handleDeleteButtonClick(ele, idx) {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#btn-upload').addEventListener('click', () => {
     if (fileUpload.length > 0) {
+      
+      // NOTE: upload of files larger than 100M were restricted by cloudflare
       document.querySelector('.upload-form-container').submit();
+      
     } else {
       alert(lang.en.ALERT_PICK_FILE);
     }
