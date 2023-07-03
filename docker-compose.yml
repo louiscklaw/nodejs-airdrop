@@ -8,22 +8,10 @@ services:
     working_dir: /backend
     ports:
       - 3000
-    # command: sleep infinity
-    command: ./entry.sh
     env_file:
       - .env
     environment:
       - HOST=share.iamon99.com
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.share-iamon99-http.rule=Host(`share.iamon99.com`)'
-      - 'traefik.http.routers.share-iamon99-http.entrypoints=web'
-      - 'traefik.http.routers.share-iamon99-http.middlewares=share-iamon99-https'
-      - 'traefik.http.middlewares.share-iamon99-https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.share-iamon99-https.rule=Host(`share.iamon99.com`)'
-      - 'traefik.http.routers.share-iamon99-https.entrypoints=websecure'
-      - 'traefik.http.routers.share-iamon99-https.tls.certresolver=myresolver'
-      - 'traefik.http.services.share-iamon99-https.loadbalancer.server.port=3000'
 
   airdrop-louislabs:
     build:
@@ -32,26 +20,9 @@ services:
       - ./backend:/backend
       - ./volumes/tmp:/backend/tmp
     working_dir: /backend
-    # ports:
-    # - 9005:3000
-    # command: sleep infinity
-    command: ./entry.sh
+    ports:
+      - 3000
     env_file:
       - .env
     environment:
       - HOST=share.louislabs.com
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.share-louislabs-http.rule=Host(`share.louislabs.com`)'
-      - 'traefik.http.routers.share-louislabs-http.entrypoints=web'
-      - 'traefik.http.routers.share-louislabs-http.middlewares=share-louislabs-https'
-      - 'traefik.http.middlewares.share-louislabs-https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.share-louislabs-https.rule=Host(`share.louislabs.com`)'
-      - 'traefik.http.routers.share-louislabs-https.entrypoints=websecure'
-      - 'traefik.http.routers.share-louislabs-https.tls.certresolver=myresolver'
-      - 'traefik.http.services.share-louislabs-https.loadbalancer.server.port=3000'
-
-networks:
-  default:
-    name: traefik-proxy-network
-    external: true

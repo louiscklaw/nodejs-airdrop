@@ -13,6 +13,9 @@
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 
+    <!-- init logrocket -->
+    <script src="https://cdn.lr-ingest.com/LogRocket.min.js" crossorigin="anonymous"></script>
+
     <!-- Font Awesome Icons -->
     <link
       rel='stylesheet'
@@ -71,7 +74,6 @@
     <link rel='stylesheet' href='upload.css' />
 
     <script src='./lang.js'></script>
-
   </head>
 
   <body>
@@ -82,10 +84,36 @@
 
       <div class='page-footer-container'>
         <div class='page-footer'>
-          © 2022
+          © 2023
           <a href='//louiscklaw.github.io'>louis portfolio</a>
         </div>
+
+        <div style="margin-top:10px;">
+          <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <div>
+              <pre>{{_uploadid}}</pre>
+            </div>
+            <div style="margin-left: 1rem;">
+              <a href="https://app.logrocket.com/syx3ge/httpslouiscklawgithubio">logrocket</a>
+            </div>
+            <div style="margin-left: 1rem;">
+              <a href="https://louiscklaw-github-io.sentry.io/projects/louiscklaw-github-io/?project=4504852838875136">severty</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+        <script>
+          window.LogRocket && window.LogRocket.init("syx3ge/httpslouiscklawgithubio");
+          LogRocket.identify("{{HOST}}_upload_id_{{_uploadid}}", {
+            name: "{{HOST}}_{{_uploadid}}",
+            email: "blabla@louislabs.com",
+
+            // Add your own custom user variables here, ie:
+            subscriptionType: "pro",
+          });
+          console.log('init done');
+        </script>
+
   </body>
 </html>

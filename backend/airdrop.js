@@ -95,6 +95,7 @@ app.get('/upload', function (req, res, next) {
 
   res.status(200).render('uploadPage', {
     _uploadid: _uploadid,
+    HOST: HOST
   });
 });
 
@@ -111,6 +112,7 @@ app.get('/upload_done', function (req, res, next) {
   res.status(200).render('uploadSuccessful', {
     upload_link,
     upload_link_carousell,
+    HOST: HOST
   });
 });
 
@@ -183,11 +185,12 @@ app.post('/upload', function (req, res, next) {
       res.status(200).render('uploadSuccessful', {
         upload_link,
         upload_link_carousell,
+        HOST: HOST
       });
       // publishMessage('general', `a file uploaded ${upload_link} :tada:`);
       sendHelloworldGroupMessage(`a file uploaded ${upload_link} :tada:`);
     } else {
-      res.status(300).redirect('/uploadNotSuccessful');
+      res.status(300).redirect('/uploadNotSuccessful', { HOST: HOST });
     }
 
     // house keep upload_id_list
@@ -200,17 +203,17 @@ app.post('/upload', function (req, res, next) {
       }
     }
   } catch (error) {
-    res.status(300).redirect('/uploadNotSuccessful');
+    res.status(300).redirect('/uploadNotSuccessful', { HOST: HOST });
   }
 });
 
 app.get('/uploadNotSuccessful', (req, res) => {
   console.log('hello unsuccessful');
-  res.status(300).render('uploadNotSuccessful');
+  res.status(300).render('uploadNotSuccessful', { HOST: HOST });
 });
 
 app.get('/helloworld', (req, res) => {
-  res.status(300).render('uploadNotSuccessful');
+  res.status(300).render('uploadNotSuccessful', { HOST: HOST });
 });
 
 app.get('/', (req, res) => {

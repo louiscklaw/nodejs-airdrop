@@ -8,7 +8,7 @@
     "format": "prettier --loglevel warn --write \"**/*.{handlebars,js,css,html,jsx,tsx,ts,json}\"",
     "gitUpdate": "git add . && git commit -m \"update nodejs-airdrop,\" && git push",
     "into_docker": "docker compose exec -it airdrop-iamon99 bash",
-    "docker_rebuild":"docker compose up -d --build",
+    "docker_rebuild": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
     "docker_stop":"docker compose down"
   },
   "keywords": [
