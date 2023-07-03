@@ -6,67 +6,115 @@
     color: rgba(0, 0, 0, 0.5);
   }
 
+  .qr-half {
+    display:block;
+    background-color: pink;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .qr-half {
+      display: none;
+      background-color: gold;
+    }
+  }
+
 </style>
 
 <script>
   function handleDeleteButtonClick(e) { console.log(e); }
 </script>
 
-<div class='container'>
-
-  <div class='upload-box'>
-
-    <div class='container-title'>
-      <div style="display: flex; flex-direction: column; justify-content: center; align-items:center; ">
-        <div>
-          <h2 id='container_title_text'>1</h2>
-        </div>
-        <div style="margin-top: 0.5rem;">
-          <h4 id='container_subtitle'>2</h4>
-        </div>
-      </div>
-      </div>
-
-    <form class='upload-form-container' action='upload' method='post' encType='multipart/form-data'>
-      <input hidden name='_uploadid' value='{{_uploadid}}' />
-      <input class='upload-button' type='submit' value='upload' hidden />
-
-      <div style='margin-top: 3rem;'>
-        <input type='file' id='file-input' name='supercoolfile' multiple />
-        <label for='file-input'>
+<div class='container' style="display:flex;flex-direction: row;justify-content: center; gap:1rem;">
+  <div>
+    <div class='upload-box' style="margin:1rem;">
+      <div class='container-title'>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items:center; ">
           <div>
-            <i class='fa-regular fa-folder-open'></i>
+            <h2 id='container_title_text'>1</h2>
           </div>
-
-          <div class='open-file-select-button' id='btn_choose_file_to_upload'>Choose Files To Upload</div>
-        </label>
-        <div id='num-of-files'>No Files Choosen</div>
-        <ul id='files-list'>
-
-        </ul>
-
-      </div>
-
-      <div class='button-container-outer'>
-        <div class='button-container'>
-          <div id='btn-back' class='button-label'>
-            <i class='fa-solid fa-chevron-left'></i>
-            <div id='btn_back_text'></div>
-          </div>
-
-          <div id='btn-upload' class='button-label disabled'>
-            <i class='fa-solid fa-arrow-up-from-bracket'></i>
-            <div id='btn_upload_text'></div>
+          <div style="margin-top: 0.5rem;">
+            <h4 id='container_subtitle'>2</h4>
           </div>
         </div>
       </div>
 
-    </form>
+      <form class='upload-form-container' action='upload' method='post' encType='multipart/form-data'>
+        <input hidden name='_uploadid' value='{{_uploadid}}' />
+        <input class='upload-button' type='submit' value='upload' hidden />
 
-    <div id='debug'></div>
+        <div style='margin-top: 3rem;'>
+          <input type='file' id='file-input' name='supercoolfile' multiple />
+          <label for='file-input'>
+            <div>
+              <i class='fa-regular fa-folder-open'></i>
+            </div>
 
+            <div class='open-file-select-button' id='btn_choose_file_to_upload'>Choose Files To Upload</div>
+            </label>
+            <div id='num-of-files'>No Files Choosen</div>
+            <ul id='files-list'>
+
+          </ul>
+
+        </div>
+
+        <div class='button-container-outer'>
+          <div class='button-container'>
+            <div id='btn-back' class='button-label'>
+              <i class='fa-solid fa-chevron-left'></i>
+              <div id='btn_back_text'></div>
+            </div>
+
+            <div id='btn-upload' class='button-label disabled'>
+              <i class='fa-solid fa-arrow-up-from-bracket'></i>
+              <div id='btn_upload_text'></div>
+            </div>
+            </div>
+            </div>
+
+      </form>
+
+    </div>
+
+  </div>
+  <div class="qr-half">
+    <div style="text-align: center;">
+      <div>Or, you can get to the </div>
+      <div>same website through QR code</div>
+    </div>
+    <div>
+      <div id="canvas" style="padding: 5px; background-color: rgba(255,255,255,0.5); border-radius: 10px;"></div>
+    </div>
   </div>
 </div>
 
 <!-- Script -->
 <script src='script.js'></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log('window.location', window.location)
+    const qrCode = new QRCodeStyling({
+      width: 300,
+      height: 300,
+      type: "svg",
+      data: window.location.href,
+      image: "https://avatars.githubusercontent.com/u/1376093?v=4",
+      dotsOptions: {
+        color: "#4267b2",
+        type: "rounded"
+      },
+      backgroundOptions: {
+        color: "#e9ebee",
+      },
+      imageOptions: {
+        crossOrigin: "anonymous",
+        margin: 3
+      }
+    });
+
+    qrCode.append(document.getElementById("canvas"));
+
+  })
+
+</script>
