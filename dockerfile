@@ -1,1 +1,1 @@
-FROM node:16-buster
+FROM node:lts-buster-slim
