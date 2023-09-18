@@ -11,7 +11,8 @@
     "docker_rebuild": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
     "docker_stop": "docker compose down",
     "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build",
-    "watch:bs": "npx browser-sync start -h 0.0.0.0 --proxy 'localhost:3000' --files \"backend\""
+    "watch:bs": "npx browser-sync start -h 0.0.0.0 --proxy 'localhost:3000' --files \"backend\"",
+    "dc_gen":"docker compose -f docker-compose.yml -f docker-compose.dev.yml config > docker-compose.gen.yml"
   },
   "keywords": [
     "nodejs",
