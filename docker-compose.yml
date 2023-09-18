@@ -1,3 +1,4 @@
+name: nodejs-airdrop-test
 services:
   airdrop-iamon99:
     build:
