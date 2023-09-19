@@ -39,21 +39,49 @@ function remove_file_from_list(event) {
 fileUserSelect.addEventListener("change", event => {
   // push to pending upload list
   const user_selected_files = fileUserSelect.files;
+  const filename_current_in_data_transfer = [];
+  const filename_user_selected = [];
+  const newly_added_files = []
 
-  for (let i = 0; i < user_selected_files.length; i++){
-    console.log('adding file ');
-    console.log(user_selected_files[i].name);
-
-    const myFile = new File(['Hello World!'], user_selected_files[i].name, {
-      type: 'text/plain',
-      lastModified: new Date(),
-    });
-    dataTransfer.items.add(myFile);
+  console.log('fileUserSelect change 1')
+  console.log(dataTransfer);
+  for (let i =0; i< dataTransfer.files.length; i++) {
+    console.log('adding filename_current_in_data_transfer')
+    filename_current_in_data_transfer.push(dataTransfer.files.item(i).name)
   }
 
-  // push to pending upload list
+  // get newly added file by name
+  console.log('fileUserSelect change 2')
+  console.log(filename_current_in_data_transfer)
+  for (let i = 0; i < user_selected_files.length; i++){
+    filename_user_selected.push(user_selected_files[i].name)
+    if (filename_current_in_data_transfer.indexOf(user_selected_files[i].name) > -1) {
+      console.log('file already exist in datatransfer, skipping');
+    }else{
+      newly_added_files.push(user_selected_files[i]);
+    }
+  }
+  // console.log({newly_added_files, filename_current_in_data_transfer});
 
-  redraw_file_list(dataTransfer.items)
+  for (let i = 0; i < newly_added_files.length; i++){
+    console.log(newly_added_files);
+    const file = newly_added_files[i];
+
+    // const myFile = new File(
+    //   ['Hello World!'],
+    //   newly_added_files[i].name,
+    //   {
+    //     type: 'text/plain',
+    //     lastModified: new Date(),
+    //   }
+    // );
+    dataTransfer.items.add(file);
+  }
+
+  console.log(dataTransfer);
+
+  // push to pending upload list
+  redraw_file_list(dataTransfer.files)
 });
 
 const uploadFile = (event) => {
@@ -85,6 +113,7 @@ function redraw_file_list(files){
   let temp_inner_html = "";
 
   for (let i = 0; i < files.length; i++) {
+    console.log(files[i].name)
     temp_inner_html = temp_inner_html +
     `<div>
       <div>
