@@ -1,4 +1,5 @@
 name: nodejs-airdrop-test
+
 services:
   airdrop-louislabs:
     build:
@@ -13,3 +14,4 @@ services:
       - .env
     environment:
       - HOST=share.louislabs.com
+    command: npm run start
