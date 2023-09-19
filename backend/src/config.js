@@ -8,13 +8,13 @@ const PROCESS_SUCCESS = 1;
 const CWD = process.cwd();
 const SRC_DIR = CWD+'/src';
 
-const TMP_DIR = process.cwd() + '/tmp';
-const VIEWS_DIR = process.cwd() + '/views';
 const FOLDER = process.cwd() + '/tmp';
 const PORT = 3000;
 const baseURL = `https://${HOST}`;
 
 const PUBLIC_DIR = SRC_DIR +'/public';
+const VIEWS_DIR = SRC_DIR +'/views';
+const TMP_DIR = process.cwd() + '/tmp';
 
 module.exports = {
   HOST,
@@ -28,4 +28,5 @@ module.exports = {
   PORT,
   baseURL,
   PUBLIC_DIR,
+  VIEWS_DIR
 };
