@@ -37,7 +37,7 @@ const debugLog = o => (is_develop ? console.log(o) : '');
 
 debugLog({ 'running config': config });
 
-var upload_id_list = {};
+// var upload_id_list = {};
 
 var app = express();
 
@@ -55,7 +55,7 @@ app.set('views', VIEWS_DIR);
 app.use(express.static(PUBLIC_DIR));
 app.use(fupload({ useTempFiles: true, tempFileDir: TMP_DIR }));
 
-app.use('/g/:_uploadid', require('./routes/g/_uploadid.js'));
+app.use('/g', require('./routes/g/_uploadid'));
 app.use('/upload', require('./routes/upload'));
 app.use('/upload_done', require('./routes/upload_done'));
 app.use('/uploadNotSuccessful', require('./routes/uploadNotSuccessful'));
