@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary);
+  font-family: 'Noto Sans TC';
+}
+
+.page {
+  min-height: calc(100vh);
+}
+
+.page-footer-container {
+  width: 100vw;
+  min-height: 10vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
