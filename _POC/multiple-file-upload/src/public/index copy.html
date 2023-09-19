@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  helloworld multiple file upload
+  <form id='file-catcher'>
+    <div id="file_upload_status">
+      file_upload_status
+    </div>
+
+    <div id="files_list_show_to_user">
+      files_list_show_to_user
+    </div>
+
+    <div>
+      <input id='file-input' type='file' multiple/>
+    </div>
+    <div>
+      <input id='file-input' type='file' multiple/>
+    </div>
+
+    <button type='submit'>
+      Submit
+    </button>
+  </form>
+
+  <script>
+
+    var fileInput = document.getElementById('file-input');
+    var fileList = [];
+
+    function cancel_file_upload (e) {
+      var {name} = e.target;
+      var remove_idx = name.split('_').pop();
+      fileList = fileList.filter((_,i) => i.toString() != remove_idx)
+      drawFileList(fileList);
+    }
+
+
+    sendFile = function (file) {
+      var formData = new FormData();
+      var request = new XMLHttpRequest();
+      formData.set('file', file);
+      request.open("POST", 'http://localhost:8000/upload_files');
+      request.send(formData);
+    };
+
+    function drawFileList(fileList) {
+      document.getElementById('files_list_show_to_user')
+        .innerHTML = fileList.map((x, i) => {
+          return `
+          <div name="file_to_be_uploaded">
+            <button type="button" name="file-index_${i}" onClick="cancel_file_upload(event);">
+              rubbish bin ${i}
+            </button>
+          </div>
+          `
+        } ).join('')
+    }
+
+    fileInput.addEventListener('change', function (evnt) {
+      for (var i = 0; i < fileInput.files.length; i++) {
+          fileList.push(fileInput.files[i]);
+          console.log(fileInput.files[i].name);
+      }
+      drawFileList(fileList);
+    });
+
+    var fileCatcher = document.getElementById('file-catcher');
+
+    fileCatcher.addEventListener('submit', function (evnt) {
+      try {
+        evnt.preventDefault();
+
+        for (var i = 0; i < fileList.length; i++){
+          var file = fileList[i];
+          sendFile(file);
+        }
+
+      } catch (error) {
+        console.log('error during sending file')
+        document
+          .getElementById('file_upload_status')
+          .innerHTML = 'upload error'
+      }
+
+      document
+        .getElementById('file_upload_status')
+        .innerHTML = 'upload done'
+
+    });
+
+  </script>
+</body>
+</html>

@@ -115,8 +115,7 @@ function remove_file_from_list(e) {
 
     dataTransfer = new_dataTransfer;
 
-    redraw_file_list(dataTransfer.files)
-
+    redraw_file_list(dataTransfer.files);
   } catch (error) {
     console.log('error during remove_file_from_list');
     console.log(error);

@@ -10,7 +10,11 @@ function sendTelegramMessage(){
 }
 
 function sendHelloworldGroupMessage(message){
-  bot.sendMessage(HELLOWORLD_GROUP_CHATID,message||'message is empty')
+  try {
+    bot.sendMessage(HELLOWORLD_GROUP_CHATID,message||'message is empty')
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 module.exports={sendTelegramMessage, sendHelloworldGroupMessage}

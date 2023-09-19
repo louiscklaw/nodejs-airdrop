@@ -19,7 +19,7 @@ app.post('/upload', function (req, res) {
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let uploaded_file_names = Object.keys(req.files);
     console.log({ uploaded_files: uploaded_file_names });
-    output = {...output, uploaded_file_names};
+    output = { ...output, uploaded_file_names };
 
     for (let i = 0; i < uploaded_file_names.length; i++) {
       let f_name = uploaded_file_names[i];
@@ -28,11 +28,11 @@ app.post('/upload', function (req, res) {
 
       uploaded_file.mv(target_path, err => {
         try {
-          if (err) throw err
+          if (err) throw err;
           // throw new Error('blablabla');
         } catch (error) {
-          console.log({target_path, output, err_message: error.message})
-          throw error
+          console.log({ target_path, output, err_message: error.message });
+          throw error;
         }
       });
     }
@@ -51,7 +51,6 @@ app.post('/upload', function (req, res) {
     // reply to request and end
     res.status(500).send(reply);
   }
-
 });
 
 try {

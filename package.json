@@ -14,7 +14,8 @@
     "watch:bs": "npx browser-sync start -h 0.0.0.0 --proxy 'localhost:3000' --files \"backend\"",
     "dc_restart": "docker compose -f ./docker-compose.gen.yml restart",
     "dc_gen_dev":"docker compose -f docker-compose.yml -f docker-compose.dev.yml config > docker-compose.gen.yml",
-    "dc_dev": "npm run dc_gen_dev && docker compose -f ./docker-compose.gen.yml up -d"
+    "dc_dev": "npm run dc_gen_dev && docker compose -f ./docker-compose.gen.yml up -d",
+    "dc_log": "docker compose -f ./docker-compose.gen.yml logs -f "
   },
   "keywords": [
     "nodejs",

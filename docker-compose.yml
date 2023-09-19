@@ -1,19 +1,5 @@
 name: nodejs-airdrop-test
 services:
-  airdrop-iamon99:
-    build:
-      context: .
-    volumes:
-      - ./backend:/backend
-      - ./volumes/tmp:/backend/tmp
-    working_dir: /backend
-    ports:
-      - 3000
-    env_file:
-      - .env
-    environment:
-      - HOST=share.iamon99.com
-
   airdrop-louislabs:
     build:
       context: .

@@ -1,0 +1,77 @@
+<html>
+  <body>
+    <form ref='uploadForm'
+      id='uploadForm'
+      action='http://localhost:8000/upload'
+      method='post'
+      encType="multipart/form-data">
+
+      <div>
+        <button type="button" onclick="click_to_append_file(event)">
+          add new file
+        </button>
+      </div>
+
+      <div id="file_list">
+      </div>
+
+      <div>
+        <input type='submit' value='Upload!' />
+      </div>
+    </form>
+
+
+    <script>
+      let file_idx = 0;
+
+      function removeFileFromList(event){
+        console.log(event.target);
+        let remove_button_id = event.target.id;
+        let file_list_node = document.querySelector('#file_list')
+        let file_idx_to_remove = event.target.name.split('_').pop();
+        let file_idx_node = document.querySelector('#'+remove_button_id);
+
+        let file_idx_div_node = file_idx_node.parentNode;
+        let file_idx_outer_div_node = file_idx_div_node.parentNode;
+        console.log(file_idx_outer_div_node);
+
+        file_list_node.removeChild(file_idx_outer_div_node);
+      }
+
+      window.addEventListener("DOMContentLoaded", () =>{
+        console.log('init add a file')
+        click_to_append_file()
+      })
+
+      function click_to_append_file(){
+        let new_node = document.createElement('div')
+
+        if (file_idx == 0){
+        new_node.innerHTML =
+        `
+        <div id="file_idx_${file_idx}">
+          <input type="file" name="sampleFile" multiple/>
+        </div>
+        `;
+        }else{
+          new_node.innerHTML =
+          `
+          <div id="file_idx_${file_idx}">
+            <input type="file" name="sampleFile" multiple/>
+            <button
+              id="remove_file_${file_idx}"
+              type="button"
+              onclick="removeFileFromList(event)">
+              remove file from list
+            </button>
+          </div>
+          `;
+        }
+
+        document.querySelector('#file_list').appendChild(new_node);
+        file_idx = file_idx + 1;
+      }
+
+    </script>
+  </body>
+</html>

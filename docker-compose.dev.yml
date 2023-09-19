@@ -1,12 +1,7 @@
 services:
-  airdrop-iamon99:
+  airdrop-louislabs:
     ports:
       - 3000:3000
     # command: sleep infinity
-    command: ./dev.sh
-
-  airdrop-louislabs:
-    ports:
-      - 3001:3000
-    # command: sleep infinity
-    command: ./dev.sh
+    # command: ./dev.sh
+    command: npm run dev_start
