@@ -27,8 +27,8 @@ function remove_file_from_list(e) {
     }
 
     dataTransfer = new_dataTransfer;
-
     redraw_file_list(dataTransfer.files);
+
   } catch (error) {
     console.log('error during remove_file_from_list');
     console.log(error);
@@ -59,10 +59,10 @@ function redraw_file_list(files) {
     <p class="name">${files[idx].name}</p>
   </div>
   <div class="right">
-    <p class="size">99KB</p>
-    <p class="delete-container">
-      <div class="delete-button" id="remove_file_${idx}" onclick="remove_file_from_list(event)">
-        <i class="fa-solid fa-trash-can"></i>
+    <p class="size"  >99KB</p>
+    <p class="delete-container" >
+      <div class="delete-button" id="remove_file_${idx}" onclick="remove_file_from_list(event)" >
+        <i class="fa-solid fa-trash-can" ></i>
       </div>
     </p>
   </div>
@@ -151,6 +151,9 @@ fileUserSelect.addEventListener('change', event => {
 
   // push to pending upload list
   redraw_file_list(dataTransfer.files);
+
+  // reset file for another trigger
+  fileUserSelect.value = null;
 });
 
 fileInput
@@ -328,7 +331,12 @@ const uploadFile = event => {
   request.onreadystatechange = () => {
     if (request.readyState === 4 && request.status === 200) {
       let result_json = JSON.parse(request.responseText)
-      console.log(result_json);
+      let {state} = result_json
+      if (state =="UPLOAD_DONE") {
+        window.location.href = '/uploadSuccessful'
+      } else{
+        window.location.href = '/uploadNotSuccessful'
+      }
     }
   };
 
