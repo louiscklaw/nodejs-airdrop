@@ -16,6 +16,9 @@ const PUBLIC_DIR = SRC_DIR + '/public';
 const VIEWS_DIR = SRC_DIR + '/views';
 const TMP_DIR = process.cwd() + '/tmp';
 
+const UPLOAD_DONE = 'UPLOAD_DONE';
+const UPLOAD_ERROR = 'UPLOAD_ERROR';
+
 module.exports = {
   HOST,
   PROCESS_NOT_SUCCESS,
@@ -29,4 +32,7 @@ module.exports = {
   baseURL,
   PUBLIC_DIR,
   VIEWS_DIR,
+
+  UPLOAD_DONE,
+  UPLOAD_ERROR,
 };

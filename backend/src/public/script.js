@@ -199,18 +199,18 @@ function handleDeleteButtonClick(ele, idx) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('#btn-upload').addEventListener('click', () => {
-    if (proceedUpload) {
-      if (fileUpload.length > 0) {
-        // NOTE: upload of files larger than 100M were restricted by cloudflare
-        document.querySelector('.upload-form-container').submit();
-      } else {
-        alert(lang.en.ALERT_PICK_FILE);
-      }
-    } else {
-      console.log('upload button click during upload process.');
-    }
-  });
+//   document.querySelector('#btn-upload').addEventListener('click', () => {
+//     if (proceedUpload) {
+//       if (fileUpload.length > 0) {
+//         // NOTE: upload of files larger than 100M were restricted by cloudflare
+//         document.querySelector('.upload-form-container').submit();
+//       } else {
+//         alert(lang.en.ALERT_PICK_FILE);
+//       }
+//     } else {
+//       console.log('upload button click during upload process.');
+//     }
+//   });
 
   document.querySelector('#btn-back').addEventListener('click', () => {
     console.debug('helloworld');
@@ -277,7 +277,7 @@ function DontShowMeThisAgain() {
   localStorage.setItem('hide-tutorial', true);
 }
 
-const uploadFile1 = event => {
+const uploadFile = event => {
   console.log('findme ?');
   filePendingUpload.files = dataTransfer.files;
   let files = filePendingUpload.files;
@@ -290,7 +290,8 @@ const uploadFile1 = event => {
   request.open('POST', API_ENDPOINT, true);
   request.onreadystatechange = () => {
     if (request.readyState === 4 && request.status === 200) {
-      console.log(request.responseText);
+      let result_json = JSON.parse(request.responseText)
+      console.log(result_json);
     }
   };
 
