@@ -49,7 +49,10 @@ app.use(fupload({ useTempFiles: true, tempFileDir: TMP_DIR }));
 app.use('/g', require('./routes/g/_uploadid'));
 app.use('/uploadNotSuccessful', require('./routes/uploadNotSuccessful'));
 app.use('/uploadSuccessful', require('./routes/upload_done'));
+
+// NOTE: to be obsolete
 app.use('/upload_done', require('./routes/upload_done'));
+
 app.use('/upload', require('./routes/upload'));
 app.use('/helloworld', require('./routes/helloworld'));
 

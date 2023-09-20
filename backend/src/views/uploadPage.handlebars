@@ -14,6 +14,11 @@
     .qr-half {
       display: none;
     }
+
+    .qr-container {
+      margin: 0;
+      padding: 0;
+    }
   }
 
 </style>
@@ -40,7 +45,8 @@
         </div>
       </div>
 
-      <div>
+      <div style="display: flex; flex-direction: row; align-items: center">
+        <div >
           <div>
             <div style="visibility: hidden;">
               <div>pending_upload</div>
@@ -91,23 +97,27 @@
               </div>
             </div>
           </div>
+        </div>
 
-
+        <div class="qr-container">
+          <div class="qr-half">
+            <div style="text-align: center;">
+              <div>Or, you can get to the </div>
+              <div>same website through QR code</div>
+            </div>
+            <div>
+              <div id="canvas" style="padding: 5px; border-radius: 10px;"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="qr-half">
-    <div style="text-align: center;">
-      <div>Or, you can get to the </div>
-      <div>same website through QR code</div>
-    </div>
-    <div>
-      <div id="canvas" style="padding: 5px; background-color: rgba(255,255,255,0.5); border-radius: 10px;"></div>
-    </div>
-  </div>
+
 
 </div>
+<div id="_uploadid" style="visibility: hidden;">{{_uploadid}}</div>
 
 <!-- Script -->
 <script src='script.js'></script>
@@ -122,11 +132,11 @@
       data: window.location.href,
       image: "https://avatars.githubusercontent.com/u/1376093?v=4",
       dotsOptions: {
-        color: "#4267b2",
+        color: "var(--tertiary)",
         type: "rounded"
       },
       backgroundOptions: {
-        color: "#e9ebee",
+        color: "rgb(255,255,255)",
       },
       imageOptions: {
         crossOrigin: "anonymous",

@@ -11,7 +11,9 @@ let numOfFilesDiv = document.getElementById('num-of-files');
 
 let btnUploadDiv = document.getElementById('btn-upload')
 
+
 let fileUpload = [];
+let uploadId = "test_uploadid";
 
 function remove_file_from_list(e) {
   try {
@@ -239,6 +241,9 @@ function handleDeleteButtonClick(ele, idx) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  let uploadIdDiv = document.getElementById('_uploadid');
+  uploadId = uploadIdDiv.textContent;
+
 //   document.querySelector('#btn-upload').addEventListener('click', () => {
 //     if (proceedUpload) {
 //       if (fileUpload.length > 0) {
@@ -345,7 +350,7 @@ const uploadFile = event => {
     formData.append(files[i].name, files[i]);
   }
 
-  formData.append('_uploadid', 'test_uploadid');
+  formData.append('_uploadid', uploadId);
 
   request.send(formData);
 };
