@@ -127,16 +127,23 @@ function redraw_file_list(files) {
 
   for (let i = 0; i < files.length; i++) {
     console.log(files[i].name);
+    // temp_inner_html =
+    //   temp_inner_html +
+    //   `<div>
+    //   <div>
+    //     ${files[i].name}
+    //   </div>
+    //   <button id="remove_file_${i}" type="button" onclick="remove_file_from_list(event)">
+    //     delete
+    //   </button>
+    // </div>`;
     temp_inner_html =
       temp_inner_html +
-      `<div>
-      <div>
-        ${files[i].name}
-      </div>
-      <button id="remove_file_${i}" type="button" onclick="remove_file_from_list(event)">
-        delete
-      </button>
-    </div>`;
+      `
+      <li>
+        hello li
+      </li>
+      `
   }
 
   fileListDiv.innerHTML = temp_inner_html;

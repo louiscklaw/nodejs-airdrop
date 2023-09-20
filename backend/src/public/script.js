@@ -1,11 +1,15 @@
 let dataTransfer = new DataTransfer();
 
 const fileListDiv = document.querySelector('#file_list');
+const fileListUl = document.querySelector('#files-list');
 // const fileListDiv = document.querySelector('#num-of-files');
 
 let fileInput = document.getElementById('file-input');
 let fileList = document.getElementById('files-list');
 let numOfFiles = document.getElementById('num-of-files');
+let numOfFilesDiv = document.getElementById('num-of-files');
+
+let btnUploadDiv = document.getElementById('btn-upload')
 
 let fileUpload = [];
 
@@ -34,21 +38,54 @@ function remove_file_from_list(e) {
 function redraw_file_list(files) {
   let temp_inner_html = '';
   try {
-    for (let i = 0; i < files.length; i++) {
-      console.log(i);
+    for (let idx = 0; idx < files.length; idx++) {
+      console.log(idx);
+      // temp_inner_html =
+      //   temp_inner_html +
+      //   `<div>
+      //   <div>
+      //     ${files[i].name}
+      //   </div>
+      //   <button id="remove_file_${i}" type="button" onclick="remove_file_from_list(event)">
+      //     delete
+      //   </button>
+      // </div>`;
       temp_inner_html =
         temp_inner_html +
-        `<div>
-        <div>
-          ${files[i].name}
-        </div>
-        <button id="remove_file_${i}" type="button" onclick="remove_file_from_list(event)">
-          delete
-        </button>
-      </div>`;
+        `
+<li>
+  <div class="left">
+    <p class="icon"><i class="fa-regular fa-file"></i> </p>
+    <p class="name">${files[idx].name}</p>
+  </div>
+  <div class="right">
+    <p class="size">99KB</p>
+    <p class="delete-container">
+      <div class="delete-button" id="remove_file_${idx}" onclick="remove_file_from_list(event)">
+        <i class="fa-solid fa-trash-can"></i>
+      </div>
+    </p>
+  </div>
+</li>
+        `;
+
+
     }
 
-    fileListDiv.innerHTML = temp_inner_html;
+    fileListUl.innerHTML = temp_inner_html;
+
+
+    numOfFilesDiv.textContent = `${files.length} ${files.length > 1 ? active_lang.FILES : active_lang.FILE} ${
+      active_lang.SELECTED
+    }`;
+
+    if (files.length > 0) {
+
+      btnUploadDiv.classList.remove('disabled')
+    }else{
+      btnUploadDiv.classList.add('disabled')
+
+    }
   } catch (error) {
     console.log(error);
   }

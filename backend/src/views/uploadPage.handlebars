@@ -42,34 +42,37 @@
 
       <div>
           <div>
-            <div>pending_upload</div>
-            <input type="file" id="filePendingUpload" multiple  />
-          </div>
-          <div>
-            <div>user_select</div>
-            <input type="file" id="fileUserSelect" multiple  />
-            <label for='fileUserSelect'>
-              <div>
-                <i class='fa-regular fa-folder-open'></i>
-              </div>
-
-              <div class='open-file-select-button' id='btn_choose_file_to_upload'>
-                Choose Files To Upload
-              </div>
-            </label>
-            <div id='num-of-files'>
-              No Files Chosen
+            <div style="visibility: hidden;">
+              <div>pending_upload</div>
+              <input type="file" id="filePendingUpload" multiple  />
+              <div>user_select</div>
+              <input type="file" id="fileUserSelect" multiple  />
             </div>
-            <ul id='files-list'>
-            </ul>
+
+            <div>
+              <label for='fileUserSelect'>
+                <div>
+                  <i class='fa-regular fa-folder-open'></i>
+                </div>
+
+                <div class='open-file-select-button' id='btn_choose_file_to_upload'>
+                  Choose Files To Upload
+                </div>
+              </label>
+              <div id='num-of-files'>
+                No Files Chosen
+              </div>
+              <ul id='files-list'>
+              </ul>
+            </div>
           </div>
 
-          <div>
+          <div style="visibility: hidden;">
             <div >file list here:</div>
             <div id="file_list">~ no files ~</div>
           </div>
 
-          <div>
+          <div style="visibility: hidden;">
             <button type="button" onclick="uploadFile(event)">
               upload
             </button>
