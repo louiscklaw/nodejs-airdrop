@@ -14,7 +14,7 @@
     "dc_gen_prod":"docker compose -f docker-compose.yml -f docker-compose.prod.yml config > docker-compose.gen.yml",
     "dc_prod": "npm run dc_gen_prod && docker compose -f ./docker-compose.gen.yml up -d",
     "dc_gen_dev":"docker compose -f docker-compose.yml -f docker-compose.dev.yml config > docker-compose.gen.yml",
-    "dc_dev": "npm run dc_gen_dev && docker compose -f ./docker-compose.gen.yml up -d",
+    "dc_dev": "npm run dc_gen_dev && docker compose -f ./docker-compose.gen.yml up -d --build",
     "dc_restart": "npm run dc_kill && npm run dc_down && docker compose -f ./docker-compose.gen.yml restart",
     "dc_down": "docker compose -f ./docker-compose.gen.yml down",
     "dc_kill": "docker compose -f ./docker-compose.gen.yml kill",

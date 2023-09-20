@@ -3,11 +3,11 @@ name: nodejs-airdrop-test
 services:
   airdrop-louislabs:
     build:
-      context: .
+      context: ./backend
     volumes:
-      - ./backend:/backend
+      - ./backend:/app
       - ./volumes/tmp:/backend/tmp
-    working_dir: /backend
+    working_dir: /app
     ports:
       - 3000
     env_file:
