@@ -6,7 +6,7 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
-      - ./volumes/tmp:/backend/tmp
+      - ./volumes/tmp:/app/tmp
     working_dir: /app
     ports:
       - 3000

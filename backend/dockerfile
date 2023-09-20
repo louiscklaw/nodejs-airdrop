@@ -9,6 +9,6 @@ RUN apt update && \
 
 RUN mkdir -p /usr/src/app
 
-VOLUME ["/usr/src/app/node_modules"]
+VOLUME ["/app/node_modules"]
 
 WORKDIR /usr/src/app
