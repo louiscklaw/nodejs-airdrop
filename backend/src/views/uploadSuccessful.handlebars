@@ -12,7 +12,7 @@
 
       <div class='upload-link'>
         <div id='your_carousell_link'>your link to file:</div>
-        <div class='upload-link-text'>{{upload_link}}</div>
+        <div id="upload_link" class='upload-link-text'>{{upload_link}}</div>
       </div>
 
       <div class='message-area'>
@@ -55,25 +55,31 @@
 </div>
 
 <script>
-  new ClipboardJS('#btn-copy-link'); new ClipboardJS('#btn-carousell-link');
-    const Toast = Swal.mixin({
-      toast: true, position: 'top', showConfirmButton:
-        false, timer: 15000, timerProgressBar: true, didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
+  new ClipboardJS('#btn-copy-link');
+  new ClipboardJS('#btn-carousell-link');
+
+  const uploadLinkTextDiv = document.querySelector('#upload_link');
+  const btnCopyLinkDiv = document.querySelector('#btn-copy-link');
+  const btnCarousellLinkDiv = document.querySelector('#btn-carousell-link');
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timer: 15000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-    });
+  });
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#upload_successful").innerHTML =
-      active_lang.UPLOAD_SUCCESSFUL
+    document.querySelector("#upload_successful").innerHTML = active_lang.UPLOAD_SUCCESSFUL
     document.querySelector("#btn_back_text").innerHTML = active_lang.BACK
-    document.querySelector("#btn_copy_link_text").innerHTML =
-      active_lang.COPY_LINK
-    document.querySelector("#btn_copy_carousell_link_text").innerHTML =
-      active_lang.COPY_CAROUSELL_LINK
-    document.querySelector("#your_carousell_link").innerHTML =
-      active_lang.YOUR_UPLOAD_LINK
+    document.querySelector("#btn_copy_link_text").innerHTML = active_lang.COPY_LINK
+    document.querySelector("#btn_copy_carousell_link_text").innerHTML = active_lang.COPY_CAROUSELL_LINK
+    document.querySelector("#your_carousell_link").innerHTML = active_lang.YOUR_UPLOAD_LINK
     document.querySelector('#btn-back').addEventListener('click', () => {
       window.location.replace('/upload')
     })
@@ -83,15 +89,30 @@
     document.querySelector('#btn-carousell-link').addEventListener('click', () => {
       Toast.fire({ icon: 'success', title: active_lang.OK_CAROUSELL_COPIED, });
     });
-  });
+
+    let result_json = JSON.parse(localStorage.getItem("result"));
+
+    console.log(result_json.info);
+    let {upload_link_carousell, upload_link} = result_json.info;
+    console.log({upload_link_carousell, upload_link});
+
+    uploadLinkTextDiv.innerHTML = upload_link;
+    btnCopyLinkDiv.dataset.clipboardText = upload_link;
+    btnCarousellLinkDiv.dataset.clipboardText = upload_link_carousell;
 
     const qrCode = new QRCodeStyling({
-    width: Math.min(300,
-      window.innerWidth * 0.5), height: Math.min(300, window.innerWidth * 0.5),
-    type: "svg", data: "{{upload_link}}",
-  {{! image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg", }}
+      type: "svg",
+      width: Math.min(300, window.innerWidth * 0.5),
+      height: Math.min(300, window.innerWidth * 0.5),
+      data: upload_link,
+      dotsOptions: { color: "rgb(65, 66, 68)", type: "rounded" },
+      backgroundOptions: { color: "#fff", },
+      imageOptions: { crossOrigin: "anonymous", margin: 10 }
+      {{! image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg", }}
+    });
 
-  dotsOptions: { color: "rgb(65, 66, 68)", type: "rounded" }, backgroundOptions:
-  { color: "#fff", }, imageOptions: { crossOrigin: "anonymous", margin: 10 } });
-  qrCode.append(document.getElementById("qr-canvas"));
+    qrCode.append(document.getElementById("qr-canvas"));
+
+  });
+
 </script>

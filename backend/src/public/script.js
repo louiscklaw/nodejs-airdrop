@@ -333,6 +333,7 @@ const uploadFile = event => {
       let result_json = JSON.parse(request.responseText)
       let {state} = result_json
       if (state =="UPLOAD_DONE") {
+        localStorage.setItem('result', JSON.stringify(result_json));
         window.location.href = '/uploadSuccessful'
       } else{
         window.location.href = '/uploadNotSuccessful'
