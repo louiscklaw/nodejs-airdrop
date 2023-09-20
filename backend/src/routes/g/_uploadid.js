@@ -7,11 +7,11 @@ const zip = require('express-zip');
 
 const { FOLDER } = require('../../config');
 
-router.get('/showUploadError', (req, res) =>{
-  res.render('uploadError', {
+router.get('/showUploadError', (req, res) => {
+  res.render('uploadErrorPage', {
     hello: 'error',
   });
-})
+});
 
 router.get('/:_uploadid', async (req, res) => {
   let output = { state: 'init', debug: {}, error: '' };
@@ -46,14 +46,12 @@ router.get('/:_uploadid', async (req, res) => {
     res.zip(filename_in_zip);
 
     console.log(output);
-
   } catch (error) {
     res.send({ hello: 'world' });
-    res.render('uploadError', {
+    res.render('uploadErrorPage', {
       hello: 'error',
     });
   }
 });
-
 
 module.exports = router;

@@ -9,7 +9,6 @@ const fupload = require('express-fileupload');
 // const zip = require('express-zip');
 // const router = express.Router()
 
-
 const { hotreload, engine } = require('express-handlebars-hotreload');
 
 const { printNetowrkInstructrion } = require('./printip.js');
@@ -41,12 +40,13 @@ debugLog({ 'running config': config });
 
 var app = express();
 
-app.engine(
-  'handlebars',
-  engine({
-    hotreload: is_develop,
-  }),
-);
+app.engine('handlebars', engine());
+// app.engine(
+//   'handlebars',
+//   engine({
+//     hotreload: is_develop,
+//   }),
+// );
 app.set('view options', { layout: 'main' });
 
 app.set('view engine', 'handlebars');
@@ -74,4 +74,3 @@ app.listen(config.PORT, function (err) {
 });
 
 console.log('end');
-

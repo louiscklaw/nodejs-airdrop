@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {HOST} = require('../config');
+const { HOST } = require('../config');
 
 router.get('/', (req, res) => {
   console.log('hello unsuccessful');

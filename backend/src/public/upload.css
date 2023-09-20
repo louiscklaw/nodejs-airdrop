@@ -149,10 +149,6 @@ p {
   box-shadow: 0 1.25em 2.18em rgb(1, 28, 71, 0.3);
 }
 
-input[type='file'] {
-  display: none;
-}
-
 label {
   display: block;
   position: relative;
@@ -466,9 +462,6 @@ p {
   box-shadow: 0 1.25em 2.18em rgb(1, 28, 71, 0.3);
 }
 
-input[type='file'] {
-  display: none;
-}
 
 label {
   display: block;
@@ -857,3 +850,7 @@ ul {
     margin: 0;
   }
 }
+/*
+input[type='file'] {
+  display: none;
+} */

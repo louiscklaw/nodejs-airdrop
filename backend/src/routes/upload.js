@@ -32,42 +32,40 @@ router.post('/', (req, res, next) => {
     const NOW_FOLDER = ['u', _uploadid].join('-');
     const STORE_FOLODER = FOLDER + '/' + NOW_FOLDER;
 
+    let uploaded_file_names = Object.keys(req.files);
+    output = { ...output, debug: { ...output.debug, uploaded_file_names } };
+    console.log({ uploaded_file_names });
+
     // if one file -> not array
-    console.log({ test: req.files.supercoolfile.name });
+    // console.log({
+    //   test_single_file: req.files.name,
+    //   test_file_length: req.files.length,
+    //   test_file: req.files,
+    //   uploaded_file_names,
+    // });
 
-    if (req.files.supercoolfile.name != undefined) {
-      console.log('single file uploaded');
-      if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
-
-      file = req.files.supercoolfile;
-      file.mv(path.join(STORE_FOLODER, file.name), err => {
-        if (err) return PROCESS_NOT_SUCCESS;
-
-        console.log({STORE_FOLODER});
-
-        return PROCESS_SUCCESS;
-      });
-
-      overall_result = true;
-    } else if (req.files.supercoolfile.length > 1) {
-      console.log('multiple file uploaded');
-      if (!fs.existsSync(STORE_FOLODER)) fs.mkdirSync(STORE_FOLODER);
-
-      all_result = req.files.supercoolfile.map((file, idx) => {
-        file.mv(path.join(STORE_FOLODER, file.name), err => {
-          if (err) return PROCESS_NOT_SUCCESS;
-
-          return PROCESS_SUCCESS;
-        });
-      });
-
-      // if no fail then pass
-      overall_result = all_result.filter(r => r == PROCESS_NOT_SUCCESS).length <= 0;
+    console.log({ STORE_FOLODER });
+    if (!fs.existsSync(STORE_FOLODER)) {
+      console.log('STORE_FOLDER created');
+      fs.mkdirSync(STORE_FOLODER);
     } else {
-      console.log('no file uploaded');
+      console.log('STORE_FOLDER already exist');
+    }
 
-      // upload id not found
-      overall_result = PROCESS_NOT_SUCCESS;
+    for (let i = 0; i < uploaded_file_names.length; i++) {
+      let f_name = uploaded_file_names[i];
+      let uploaded_file = req.files[f_name];
+      let target_path = STORE_FOLODER + '/' + f_name;
+
+      uploaded_file.mv(target_path, err => {
+        try {
+          if (err) throw err;
+          // throw new Error('blablabla');
+        } catch (error) {
+          console.log({ target_path, output, err_message: error.message });
+          throw error;
+        }
+      });
     }
 
     var upload_link = `${baseURL}/g/${NOW_FOLDER}`;
@@ -84,7 +82,7 @@ router.post('/', (req, res, next) => {
     // res.send({ hello: 'done 123321 ?' });
   } catch (error) {
     console.log(error);
-    res.redirect('/uploadNotSuccessful');
+    res.redirect('/uploadNotSuccessful', {});
   }
 });
 

@@ -1,18 +1,135 @@
+let dataTransfer = new DataTransfer();
+
+const fileListDiv = document.querySelector('#file_list');
+// const fileListDiv = document.querySelector('#num-of-files');
+
 let fileInput = document.getElementById('file-input');
 let fileList = document.getElementById('files-list');
 let numOfFiles = document.getElementById('num-of-files');
 
 let fileUpload = [];
 
-fileInput.addEventListener('change', () => {
-  fileList.innerHTML = '';
+function remove_file_from_list(e) {
+  try {
+    let file_idx = e.target.id.split('_').pop();
+    const new_dataTransfer = new DataTransfer();
 
-  for (i of fileInput.files) {
-    fileUpload.push(i);
+    for (let i = 0; i < dataTransfer.files.length; i++) {
+      if (i != parseInt(file_idx)) {
+        new_dataTransfer.items.add(dataTransfer.files.item(i));
+      } else {
+        console.log('idx need to be deleted, skipping');
+      }
+    }
+
+    dataTransfer = new_dataTransfer;
+
+    redraw_file_list(dataTransfer.files);
+  } catch (error) {
+    console.log('error during remove_file_from_list');
+    console.log(error);
+  }
+}
+
+function redraw_file_list(files) {
+  let temp_inner_html = '';
+  try {
+    for (let i = 0; i < files.length; i++) {
+      console.log(i);
+      temp_inner_html =
+        temp_inner_html +
+        `<div>
+        <div>
+          ${files[i].name}
+        </div>
+        <button id="remove_file_${i}" type="button" onclick="remove_file_from_list(event)">
+          delete
+        </button>
+      </div>`;
+    }
+
+    fileListDiv.innerHTML = temp_inner_html;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function redraw_file_list1(files) {
+  let temp_inner_html = '';
+
+  for (let i = 0; i < files.length; i++) {
+    console.log(files[i].name);
+    temp_inner_html =
+      temp_inner_html +
+      `
+      <div>
+        <div>
+          ${files[i].name}
+        </div>
+        <button id="remove_file_${i}" type="button" onclick="remove_file_from_list(event)">
+          delete
+        </button>
+      </div>
+    `;
   }
 
-  refreshFileList();
+  fileListDiv.innerHTML = temp_inner_html;
+}
+
+fileUserSelect.addEventListener('change', event => {
+  // push to pending upload list
+  const user_selected_files = fileUserSelect.files;
+  const filename_current_in_data_transfer = [];
+  const filename_user_selected = [];
+  const newly_added_files = [];
+
+  console.log('fileUserSelect change 1');
+  console.log(dataTransfer);
+  for (let i = 0; i < dataTransfer.files.length; i++) {
+    console.log('adding filename_current_in_data_transfer');
+    filename_current_in_data_transfer.push(dataTransfer.files.item(i).name);
+  }
+
+  // get newly added file by name
+  console.log('fileUserSelect change 2');
+  console.log(filename_current_in_data_transfer);
+  for (let i = 0; i < user_selected_files.length; i++) {
+    filename_user_selected.push(user_selected_files[i].name);
+    if (filename_current_in_data_transfer.indexOf(user_selected_files[i].name) > -1) {
+      console.log('file already exist in datatransfer, skipping');
+    } else {
+      newly_added_files.push(user_selected_files[i]);
+    }
+  }
+  // console.log({newly_added_files, filename_current_in_data_transfer});
+
+  for (let i = 0; i < newly_added_files.length; i++) {
+    console.log(newly_added_files);
+    const file = newly_added_files[i];
+
+    dataTransfer.items.add(file);
+  }
+
+  console.log(dataTransfer);
+
+  // push to pending upload list
+  redraw_file_list(dataTransfer.files);
 });
+
+fileInput
+  ? fileInput.addEventListener('change', () => {
+      // push to pending upload list
+      redraw_file_list(dataTransfer.files);
+
+      fileList.innerHTML = '';
+
+      for (i of fileInput.files) {
+        fileUpload.push(i);
+      }
+
+      refreshFileList();
+    })
+  : false;
 
 function clearFileList() {
   var child = fileList.lastElementChild;
@@ -159,3 +276,29 @@ if (!localStorage.getItem('hide-tutorial')) {
 function DontShowMeThisAgain() {
   localStorage.setItem('hide-tutorial', true);
 }
+
+const uploadFile1 = event => {
+  console.log('findme ?');
+  filePendingUpload.files = dataTransfer.files;
+  let files = filePendingUpload.files;
+
+  console.log('Uploading file...');
+  const API_ENDPOINT = '/upload';
+  const request = new XMLHttpRequest();
+  const formData = new FormData();
+
+  request.open('POST', API_ENDPOINT, true);
+  request.onreadystatechange = () => {
+    if (request.readyState === 4 && request.status === 200) {
+      console.log(request.responseText);
+    }
+  };
+
+  for (let i = 0; i < files.length; i++) {
+    formData.append(files[i].name, files[i]);
+  }
+
+  formData.append('_uploadid', 'test_uploadid');
+
+  request.send(formData);
+};

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production node airdrop.js",
-    "dev_start": "cross-env NODE_ENV=development nodemon -L src/index.js",
+    "dev_start": "cross-env NODE_ENV=development nodemon -L --ignore src/public src/index.js",
     "watch": "nodemon node airdrop.js",
     "dev": "nodemon --ignore ./tmp --ignore ./public --exec 'yarn dev_start'",
     "test_slack": "node ./sendSlack.js",
