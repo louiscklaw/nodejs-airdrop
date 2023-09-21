@@ -1,8 +1,0 @@
-services:
-  airdrop-louislabs:
-    command: npm run start
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.share-louislabs.rule=Host(`share.louislabs.com`)"
-      - "traefik.http.routers.share-louislabs.entrypoints=web"
-      - "traefik.http.services.share-louislabs.loadbalancer.server.port=3000"

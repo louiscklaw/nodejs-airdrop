@@ -14,4 +14,5 @@ services:
       - .env
     environment:
       - HOST=share.louislabs.com
-    command: npm run start
+    # command: npm run start
+    command: sleep infinity
